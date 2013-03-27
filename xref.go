@@ -3,7 +3,7 @@
 // go/sym and adds the following features:
 //
 // * generates a unique, meaningful identifier for each xref
-// * establishes cross-references even when there is no xref
+// * establishes cross-references even when there is no symbol
 // * test coverage
 package xref
 
