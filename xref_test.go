@@ -43,7 +43,7 @@ func TestVarDecl(t *testing.T) {
 	if xA.Universe {
 		t.Errorf("A should not be identified as a Universe type")
 	}
-	if !isDecl(xA) {
+	if !xA.IsDecl() {
 		t.Errorf("A should be a decl, got %v", xA)
 	}
 
@@ -53,7 +53,7 @@ func TestVarDecl(t *testing.T) {
 	if !xstring.Universe {
 		t.Errorf("string should be identified as a Universe type")
 	}
-	if isDecl(xstring) {
+	if xstring.IsDecl() {
 		t.Errorf("string is not declared here, got %v", xstring)
 	}
 }
@@ -69,7 +69,7 @@ func TestVarDeclWithInferredType(t *testing.T) {
 	if xA.ExprType == nil || xA.ExprType.String() != "string" {
 		t.Errorf("want A's type to be 'string', got %v %v", xA.ExprType, xA.ReferObj)
 	}
-	if !isDecl(xA) {
+	if !xA.IsDecl() {
 		t.Errorf("A should be a decl, got %v", xA)
 	}
 }
@@ -110,8 +110,4 @@ func pp(xs []Xref) string {
 		s += x.String()
 	}
 	return s + "]"
-}
-
-func isDecl(x Xref) bool {
-	return x.ReferPos == x.Ident.Pos()
 }

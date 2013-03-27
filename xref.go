@@ -243,6 +243,10 @@ func typeBaseType(t types.Type) types.Type {
 	return t
 }
 
+func (x *Xref) IsDecl() bool {
+	return x.ReferPos == x.Ident.Pos()
+}
+
 func (x *Xref) String() string {
 	return fmt.Sprintf("Xref{Expr=%v, Ident=%v, ExprType=%v}", x.Expr, x.Ident, x.ExprType)
 }
