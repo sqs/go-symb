@@ -143,6 +143,7 @@ func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
 			return false
 
 		case *ast.File:
+			ok = ctxt.visitExpr(f, n.Name, false, visitf)
 			for _, d := range n.Decls {
 				ast.Walk(visit, d)
 			}
@@ -187,13 +188,6 @@ func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(
 	xref.ReferObj = obj
 	if types.Universe.Lookup(obj.GetName()) != obj {
 		xref.ReferPos = obj.GetPos()
-		if xref.ReferPos == token.NoPos {
-			name := pretty(e)
-			if name != "init" {
-				ctxt.logf(e.Pos(), "no declaration for %s", pretty(e))
-			}
-			return true
-		}
 	} else {
 		xref.Universe = true
 	}
