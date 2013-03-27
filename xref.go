@@ -2,8 +2,8 @@
 // cross-references in Go source files. It is copied from rog-go's
 // go/sym and adds the following features:
 //
-// * generates a unique, meaningful identifier for each symbol
-// * establishes cross-references even when there is no symbol
+// * generates a unique, meaningful identifier for each xref
+// * establishes cross-references even when there is no xref
 // * test coverage
 package xref
 
@@ -20,19 +20,19 @@ import (
 	"sync"
 )
 
-// Info holds information about an identifier.
-type Info struct {
-	Pos      token.Pos   // position of symbol.
-	Expr     ast.Expr    // expression for symbol (*ast.Ident or *ast.SelectorExpr)
+// Xref holds information about an xref.
+type Xref struct {
+	Pos      token.Pos   // position of xref.
+	Expr     ast.Expr    // expression for xref (*ast.Ident or *ast.SelectorExpr)
 	Ident    *ast.Ident  // identifier in parse tree
 	ExprType types.Type  // type of expression.
-	ReferPos token.Pos   // position of referred-to symbol.
+	ReferPos token.Pos   // position of referred-to thing.
 	ReferObj *ast.Object // object referred to.
 	Local    bool        // whether referred-to object is function-local.
 	Universe bool        // whether referred-to object is in universe.
 }
 
-// Context holds the context for IterateSyms.
+// Context holds the context for IterateXrefs.
 type Context struct {
 	pkgMutex sync.Mutex
 	pkgCache map[string]*ast.Package
@@ -114,10 +114,9 @@ func (ctxt *Context) logf(pos token.Pos, f string, a ...interface{}) {
 	ctxt.Logf(pos, f, a...)
 }
 
-// IterateSyms calls visitf for each identifier in the given file.  If
-// visitf returns false, the iteration stops.  If visitf changes
-// info.Ident.Name, the file is added to ctxt.ChangedFiles.
-func (ctxt *Context) IterateSyms(f *ast.File, visitf func(info *Info) bool) {
+// IterateXRefs calls visitf for each xref in the given file.  If
+// visitf returns false, the iteration stops.
+func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
 	var visit astVisitor
 	ok := true
 	local := false // TODO set to true inside function body
@@ -200,30 +199,30 @@ func (ctxt *Context) filename(f *ast.File) string {
 	return ctxt.FileSet.Position(f.Package).Filename
 }
 
-func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(*Info) bool) bool {
-	var info Info
-	info.Expr = e
+func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(*Xref) bool) bool {
+	var xref Xref
+	xref.Expr = e
 	switch e := e.(type) {
 	case *ast.Ident:
 		if e.Name == "_" {
 			return true
 		}
-		info.Pos = e.Pos()
-		info.Ident = e
+		xref.Pos = e.Pos()
+		xref.Ident = e
 	case *ast.SelectorExpr:
-		info.Pos = e.Sel.Pos()
-		info.Ident = e.Sel
+		xref.Pos = e.Sel.Pos()
+		xref.Ident = e.Sel
 	}
 	obj, t := types.ExprType(e, ctxt.importer)
 	if obj == nil {
 		ctxt.logf(e.Pos(), "no object for %s", pretty(e))
 		return true
 	}
-	info.ExprType = t
-	info.ReferObj = obj
+	xref.ExprType = t
+	xref.ReferObj = obj
 	if parser.Universe.Lookup(obj.Name) != obj {
-		info.ReferPos = types.DeclPos(obj)
-		if info.ReferPos == token.NoPos {
+		xref.ReferPos = types.DeclPos(obj)
+		if xref.ReferPos == token.NoPos {
 			name := pretty(e)
 			if name != "init" {
 				ctxt.logf(e.Pos(), "no declaration for %s", pretty(e))
@@ -231,10 +230,10 @@ func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(
 			return true
 		}
 	} else {
-		info.Universe = true
+		xref.Universe = true
 	}
-	info.Local = local
-	return visitf(&info)
+	xref.Local = local
+	return visitf(&xref)
 }
 
 type astVisitor func(n ast.Node) bool
