@@ -14,12 +14,9 @@ import (
 	"code.google.com/p/rog-go/exp/go/printer"
 	"code.google.com/p/rog-go/exp/go/token"
 	"code.google.com/p/rog-go/exp/go/types"
-	"fmt"
 	"go/build"
-	"io/ioutil"
 	"os"
 	"path/filepath"
-	"strconv"
 	"sync"
 )
 
@@ -27,7 +24,7 @@ import (
 type Info struct {
 	Pos      token.Pos   // position of symbol.
 	Expr     ast.Expr    // expression for symbol (*ast.Ident or *ast.SelectorExpr)
-	Ident    *ast.Ident  // identifier in parse tree (changing ident.Name changes the parse tree)
+	Ident    *ast.Ident  // identifier in parse tree
 	ExprType types.Type  // type of expression.
 	ReferPos token.Pos   // position of referred-to symbol.
 	ReferObj *ast.Object // object referred to.
@@ -37,10 +34,9 @@ type Info struct {
 
 // Context holds the context for IterateSyms.
 type Context struct {
-	pkgMutex     sync.Mutex
-	pkgCache     map[string]*ast.Package
-	importer     types.Importer
-	ChangedFiles map[string]*ast.File
+	pkgMutex sync.Mutex
+	pkgCache map[string]*ast.Package
+	importer types.Importer
 
 	// FileSet holds the fileset used when importing packages.
 	FileSet *token.FileSet
@@ -52,9 +48,8 @@ type Context struct {
 
 func NewContext() *Context {
 	ctxt := &Context{
-		pkgCache:     make(map[string]*ast.Package),
-		FileSet:      token.NewFileSet(),
-		ChangedFiles: make(map[string]*ast.File),
+		pkgCache: make(map[string]*ast.Package),
+		FileSet:  token.NewFileSet(),
 	}
 	ctxt.importer = ctxt.importerFunc()
 	return ctxt
@@ -239,41 +234,7 @@ func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(
 		info.Universe = true
 	}
 	info.Local = local
-	oldName := info.Ident.Name
-	more := visitf(&info)
-	if info.Ident.Name != oldName {
-		ctxt.ChangedFiles[ctxt.filename(f)] = f
-	}
-	return more
-}
-
-// WriteFiles writes the given files, formatted as with gofmt.
-func (ctxt *Context) WriteFiles(files map[string]*ast.File) error {
-	// TODO should we try to continue changing files even after an error?
-	for _, f := range files {
-		name := ctxt.filename(f)
-		newSrc, err := ctxt.gofmtFile(f)
-		if err != nil {
-			return fmt.Errorf("cannot format %q: %v", name, err)
-		}
-		err = ioutil.WriteFile(name, newSrc, 0666)
-		if err != nil {
-			return fmt.Errorf("cannot write %q: %v", name, err)
-		}
-	}
-	return nil
-}
-
-// litToString converts from a string literal to a regular string.
-func litToString(lit *ast.BasicLit) (v string) {
-	if lit.Kind != token.STRING {
-		panic("expected string")
-	}
-	v, err := strconv.Unquote(string(lit.Value))
-	if err != nil {
-		panic("cannot unquote")
-	}
-	return v
+	return visitf(&info)
 }
 
 type astVisitor func(n ast.Node) bool
@@ -291,18 +252,4 @@ func pretty(n ast.Node) string {
 	var b bytes.Buffer
 	printer.Fprint(&b, emptyFileSet, n)
 	return b.String()
-}
-
-var printConfig = &printer.Config{
-	Mode:     printer.TabIndent | printer.UseSpaces,
-	Tabwidth: 8,
-}
-
-func (ctxt *Context) gofmtFile(f *ast.File) ([]byte, error) {
-	var buf bytes.Buffer
-	_, err := printConfig.Fprint(&buf, ctxt.FileSet, f)
-	if err != nil {
-		return nil, err
-	}
-	return buf.Bytes(), nil
 }
