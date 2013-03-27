@@ -1,5 +1,9 @@
-// The sym package provides a way to iterate over and change the symbols in Go
-// source files.
+// The go/symbol package provides a way to iterate over the symbols in
+// Go source files. It is copied from rog-go's go/sym and adds the
+// following features:
+//
+// * generates a unique, meaningful identifier for each symbol
+// * test coverage
 package sym
 
 import (
