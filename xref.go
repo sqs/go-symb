@@ -1,10 +1,11 @@
-// The go/symbol package provides a way to iterate over the symbols in
-// Go source files. It is copied from rog-go's go/sym and adds the
-// following features:
+// The go/xref package provides a way to iterate over the
+// cross-references in Go source files. It is copied from rog-go's
+// go/sym and adds the following features:
 //
 // * generates a unique, meaningful identifier for each symbol
+// * establishes cross-references even when there is no symbol
 // * test coverage
-package symbol
+package xref
 
 import (
 	"bytes"
