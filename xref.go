@@ -9,37 +9,37 @@ package xref
 
 import (
 	"bytes"
-	"code.google.com/p/rog-go/exp/go/ast"
-	"code.google.com/p/rog-go/exp/go/parser"
-	"code.google.com/p/rog-go/exp/go/printer"
-	"code.google.com/p/rog-go/exp/go/token"
-	"code.google.com/p/rog-go/exp/go/types"
-	"go/build"
-	"os"
-	"path/filepath"
-	"sync"
+	"code.google.com/p/go.exp/go/types"
+	"fmt"
+	"go/ast"
+	"go/printer"
+	"go/token"
 )
 
 // Xref holds information about an xref.
 type Xref struct {
-	Pos      token.Pos   // position of xref.
-	Expr     ast.Expr    // expression for xref (*ast.Ident or *ast.SelectorExpr)
-	Ident    *ast.Ident  // identifier in parse tree
-	ExprType types.Type  // type of expression.
-	ReferPos token.Pos   // position of referred-to thing.
-	ReferObj *ast.Object // object referred to.
-	Local    bool        // whether referred-to object is function-local.
-	Universe bool        // whether referred-to object is in universe.
+	Pos      token.Pos    // position of xref.
+	Expr     ast.Expr     // expression for xref (*ast.Ident or *ast.SelectorExpr)
+	Ident    *ast.Ident   // identifier in parse tree
+	ExprType types.Type   // type of expression.
+	ReferPos token.Pos    // position of referred-to thing.
+	ReferObj types.Object // object referred to.
+	Local    bool         // whether referred-to object is function-local.
+	Universe bool         // whether referred-to object is in universe.
 }
 
 // Context holds the context for IterateXrefs.
 type Context struct {
-	pkgMutex sync.Mutex
-	pkgCache map[string]*ast.Package
-	importer types.Importer
-
 	// FileSet holds the fileset used when importing packages.
 	FileSet *token.FileSet
+
+	// idObjs stores off go/types typecheck results for each ident.
+	idObjs map[*ast.Ident]types.Object
+
+	// exprTypes stores off go/types typecheck results for each expr.
+	exprTypes map[ast.Expr]types.Type
+
+	typesCtxt types.Context
 
 	// Logf is used to print warning messages.
 	// If it is nil, no warning messages will be printed.
@@ -47,64 +47,22 @@ type Context struct {
 }
 
 func NewContext() *Context {
-	ctxt := &Context{
-		pkgCache: make(map[string]*ast.Package),
-		FileSet:  token.NewFileSet(),
+	var ctxt *Context
+	ctxt = &Context{
+		FileSet:   token.NewFileSet(),
+		idObjs:    make(map[*ast.Ident]types.Object, 0),
+		exprTypes: make(map[ast.Expr]types.Type, 0),
+		typesCtxt: types.Context{
+			Ident: func(id *ast.Ident, obj types.Object) {
+				ctxt.idObjs[id] = obj
+			},
+			Expr: func(e ast.Expr, typ types.Type, val interface{}) {
+				ctxt.exprTypes[astBaseType(e)] = typeBaseType(typ)
+			},
+		},
 	}
-	ctxt.importer = ctxt.importerFunc()
+
 	return ctxt
-}
-
-// Import imports and parses the package with the given path.
-// It returns nil if it fails.
-func (ctxt *Context) Import(path string) *ast.Package {
-	// TODO return error.
-	return ctxt.importer(path)
-}
-
-func (ctxt *Context) importerFunc() types.Importer {
-	return func(path string) *ast.Package {
-		ctxt.pkgMutex.Lock()
-		defer ctxt.pkgMutex.Unlock()
-		if pkg := ctxt.pkgCache[path]; pkg != nil {
-			return pkg
-		}
-		cwd, _ := os.Getwd() // TODO put this into Context?
-		bpkg, err := build.Import(path, cwd, 0)
-		if err != nil {
-			ctxt.logf(token.NoPos, "cannot find %q: %v", path, err)
-			return nil
-		}
-		// Relative paths can have several names
-		if pkg := ctxt.pkgCache[bpkg.ImportPath]; pkg != nil {
-			ctxt.pkgCache[path] = pkg
-			return pkg
-		}
-		var files []string
-		files = append(files, bpkg.GoFiles...)
-		files = append(files, bpkg.CgoFiles...)
-		files = append(files, bpkg.TestGoFiles...)
-		for i, f := range files {
-			files[i] = filepath.Join(bpkg.Dir, f)
-		}
-		pkgs, err := parser.ParseFiles(ctxt.FileSet, files, parser.ParseComments)
-		if len(pkgs) == 0 {
-			ctxt.logf(token.NoPos, "cannot parse package %q: %v", path, err)
-			return nil
-		}
-		delete(pkgs, "documentation")
-		for _, pkg := range pkgs {
-			if ctxt.pkgCache[path] == nil {
-				ctxt.pkgCache[path] = pkg
-				if path != bpkg.ImportPath {
-					ctxt.pkgCache[bpkg.ImportPath] = pkg
-				}
-			} else {
-				ctxt.logf(token.NoPos, "unexpected extra package %q in %q", pkg.Name, path)
-			}
-		}
-		return ctxt.pkgCache[path]
-	}
 }
 
 func (ctxt *Context) logf(pos token.Pos, f string, a ...interface{}) {
@@ -117,6 +75,8 @@ func (ctxt *Context) logf(pos token.Pos, f string, a ...interface{}) {
 // IterateXRefs calls visitf for each xref in the given file.  If
 // visitf returns false, the iteration stops.
 func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
+	ctxt.typesCtxt.Check(ctxt.FileSet, []*ast.File{f})
+
 	var visit astVisitor
 	ok := true
 	local := false // TODO set to true inside function body
@@ -199,6 +159,14 @@ func (ctxt *Context) filename(f *ast.File) string {
 	return ctxt.FileSet.Position(f.Package).Filename
 }
 
+func (ctxt *Context) exprInfo(e ast.Expr) (obj types.Object, typ types.Type) {
+	if id, ok := e.(*ast.Ident); ok {
+		obj = ctxt.idObjs[id]
+	}
+	typ = ctxt.exprTypes[e]
+	return
+}
+
 func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(*Xref) bool) bool {
 	var xref Xref
 	xref.Expr = e
@@ -213,15 +181,15 @@ func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(
 		xref.Pos = e.Sel.Pos()
 		xref.Ident = e.Sel
 	}
-	obj, t := types.ExprType(e, ctxt.importer)
+	obj, t := ctxt.exprInfo(e)
 	if obj == nil {
 		ctxt.logf(e.Pos(), "no object for %s", pretty(e))
 		return true
 	}
 	xref.ExprType = t
 	xref.ReferObj = obj
-	if parser.Universe.Lookup(obj.Name) != obj {
-		xref.ReferPos = types.DeclPos(obj)
+	if types.Universe.Lookup(obj.GetName()) != obj {
+		xref.ReferPos = obj.GetPos()
 		if xref.ReferPos == token.NoPos {
 			name := pretty(e)
 			if name != "init" {
@@ -251,4 +219,36 @@ func pretty(n ast.Node) string {
 	var b bytes.Buffer
 	printer.Fprint(&b, emptyFileSet, n)
 	return b.String()
+}
+
+// astBaseType returns the base type expr for AST type expr x.
+func astBaseType(e ast.Expr) ast.Expr {
+	switch t := e.(type) {
+	case *ast.ArrayType:
+		return astBaseType(t.Elt)
+	case *ast.MapType:
+		return astBaseType(t.Value)
+	case *ast.StarExpr:
+		return astBaseType(t.X)
+	}
+	return e
+}
+
+// typeBaseType returns the base type for a types.Type.
+func typeBaseType(t types.Type) types.Type {
+	switch t := t.(type) {
+	case *types.Array:
+		return typeBaseType(t.Elt)
+	case *types.Pointer:
+		return typeBaseType(t.Base)
+	case *types.Map:
+		return typeBaseType(t.Elt) // TODO(sqs): also return Key type; typeBaseType needs to return multiple results?
+	case *types.Slice:
+		return typeBaseType(t.Elt)
+	}
+	return t
+}
+
+func (x *Xref) String() string {
+	return fmt.Sprintf("Xref{Expr=%v, Ident=%v, ExprType=%v}", x.Expr, x.Ident, x.ExprType)
 }
