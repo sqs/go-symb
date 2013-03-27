@@ -18,7 +18,6 @@ import (
 
 // Xref holds information about an xref.
 type Xref struct {
-	Pos      token.Pos    // position of xref.
 	Expr     ast.Expr     // expression for xref (*ast.Ident or *ast.SelectorExpr)
 	Ident    *ast.Ident   // identifier in parse tree
 	ExprType types.Type   // type of expression.
@@ -175,15 +174,13 @@ func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(
 		if e.Name == "_" {
 			return true
 		}
-		xref.Pos = e.Pos()
 		xref.Ident = e
 	case *ast.SelectorExpr:
-		xref.Pos = e.Sel.Pos()
 		xref.Ident = e.Sel
 	}
 	obj, t := ctxt.exprInfo(e)
 	if obj == nil {
-		ctxt.logf(e.Pos(), "no object for %s", pretty(e))
+		ctxt.logf(xref.Ident.Pos(), "no object for %s", pretty(e))
 		return true
 	}
 	xref.ExprType = t
