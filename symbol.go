@@ -4,7 +4,7 @@
 //
 // * generates a unique, meaningful identifier for each symbol
 // * test coverage
-package sym
+package symbol
 
 import (
 	"bytes"
