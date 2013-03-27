@@ -164,6 +164,9 @@ func (ctxt *Context) exprInfo(e ast.Expr) (obj types.Object, typ types.Type) {
 		obj = ctxt.idObjs[id]
 	}
 	typ = ctxt.exprTypes[e]
+	if typ == nil && obj != nil && obj.GetType() != types.Typ[types.Invalid] {
+		typ = obj.GetType()
+	}
 	return
 }
 
