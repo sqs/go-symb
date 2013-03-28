@@ -103,6 +103,19 @@ func TestVarCrossPackageXref(t *testing.T) {
 	}
 }
 
+func TestFuncSignatureXrefs(t *testing.T) {
+	xs := xrefs(`package p; func A(b, c string, d bool) (e, f int, g uint) { panic() }`)
+
+	if len(xs) != 13 {
+		t.Fatalf("want exactly 13 xrefs, got %v", xs)
+	}
+
+	wantps := "[A, b, c, string, d, bool, e, f, int, g, uint]"
+	if prettys(xs[1:12]) != wantps {
+		t.Errorf("want func sig exprs %v, got %v", wantps, prettys(xs[1:12]))
+	}
+}
+
 func xrefs(src string) []Xref {
 	fset := token.NewFileSet()
 	f, _ := parser.ParseFile(fset, "test.go", src, 0)
@@ -137,6 +150,17 @@ func pp(xs []Xref) string {
 			s += ", "
 		}
 		s += x.String()
+	}
+	return s + "]"
+}
+
+func prettys(xs []Xref) string {
+	s := "["
+	for i, x := range xs {
+		if i > 0 {
+			s += ", "
+		}
+		s += pretty(x.Expr)
 	}
 	return s + "]"
 }
