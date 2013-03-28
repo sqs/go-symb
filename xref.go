@@ -182,7 +182,7 @@ func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(
 	case *ast.SelectorExpr:
 		xref.Ident = e.Sel
 	}
-	obj, t := ctxt.exprInfo(e)
+	obj, t := ctxt.exprInfo(xref.Ident)
 	if obj == nil {
 		ctxt.logf(xref.Ident.Pos(), "no object for %s", pretty(e))
 		return true

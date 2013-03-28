@@ -74,6 +74,25 @@ func TestVarDeclWithInferredType(t *testing.T) {
 	}
 }
 
+func TestConstCrossPackageXref(t *testing.T) {
+	xs := xrefs(`package p; import "flag"; var A = flag.ErrHelp`)
+
+	if len(xs) != 4 {
+		t.Fatalf("want exactly 4 xrefs, got %v", xs)
+	}
+
+	xflag := xs[2]
+	xErrHelp := xs[3]
+
+	if pretty(xflag.Expr) != "flag" {
+		t.Errorf("want Expr to be 'flag', got Expr=%v", pretty(xflag.Expr))
+	}
+
+	if pretty(xErrHelp.Expr) != "flag.ErrHelp" || pretty(xErrHelp.Ident) != "ErrHelp" {
+		t.Errorf("want Expr to be 'flag.ErrHelp' and Ident to be 'ErrHelp', got Ident=%v and Expr=%v", pretty(xErrHelp.Ident), pretty(xErrHelp.Expr))
+	}
+}
+
 func xrefs(src string) []Xref {
 	fset := token.NewFileSet()
 	f, _ := parser.ParseFile(fset, "test.go", src, 0)
