@@ -91,6 +91,16 @@ func TestConstCrossPackageXref(t *testing.T) {
 	if pretty(xErrHelp.Expr) != "flag.ErrHelp" || pretty(xErrHelp.Ident) != "ErrHelp" {
 		t.Errorf("want Expr to be 'flag.ErrHelp' and Ident to be 'ErrHelp', got Ident=%v and Expr=%v", pretty(xErrHelp.Ident), pretty(xErrHelp.Expr))
 	}
+	if errHelp, ok := xErrHelp.ReferObj.(*types.Var); ok {
+		if errHelp.GetPkg().Name != "flag" {
+			t.Errorf("want flag.ErrHelp to be in pkg named flag, got %v", errHelp.GetPkg().Name)
+		}
+		if errHelp.GetPkg().Path != "flag" {
+			t.Errorf("want flag.ErrHelp to be in pkg with import path flag, got %v", errHelp.GetPkg().Path)
+		}
+	} else {
+		t.Errorf("want flag.ErrHelp ReferObj to be a types.Var, got %v", xErrHelp.ReferObj)
+	}
 }
 
 func xrefs(src string) []Xref {
