@@ -18,9 +18,10 @@ import (
 
 // Xref holds information about an xref.
 type Xref struct {
-	Expr     ast.Expr     // expression for xref (*ast.Ident or *ast.SelectorExpr)
-	Ident    *ast.Ident   // identifier in parse tree
-	ExprType types.Type   // type of expression.
+	Expr     ast.Expr   // expression for xref (*ast.Ident or *ast.SelectorExpr)
+	Ident    *ast.Ident // identifier in parse tree
+	ExprType types.Type // type of expression.
+	Pkg      *types.Package
 	ReferPos token.Pos    // position of referred-to thing.
 	ReferObj types.Object // object referred to.
 	Local    bool         // whether referred-to object is function-local.
@@ -38,7 +39,8 @@ type Context struct {
 	// exprTypes stores off go/types typecheck results for each expr.
 	exprTypes map[ast.Expr]types.Type
 
-	typesCtxt types.Context
+	typesCtxt      types.Context
+	currentPackage *types.Package // the last package that was returned by types.Check
 
 	// Logf is used to print warning messages.
 	// If it is nil, no warning messages will be printed.
@@ -74,7 +76,7 @@ func (ctxt *Context) logf(pos token.Pos, f string, a ...interface{}) {
 // IterateXRefs calls visitf for each xref in the given file.  If
 // visitf returns false, the iteration stops.
 func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
-	ctxt.typesCtxt.Check(ctxt.FileSet, []*ast.File{f})
+	ctxt.currentPackage, _ = ctxt.typesCtxt.Check(ctxt.FileSet, []*ast.File{f})
 
 	var visit astVisitor
 	ok := true
@@ -173,6 +175,7 @@ func (ctxt *Context) exprInfo(e ast.Expr) (obj types.Object, typ types.Type) {
 func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(*Xref) bool) bool {
 	var xref Xref
 	xref.Expr = e
+	xref.Pkg = ctxt.currentPackage
 	switch e := e.(type) {
 	case *ast.Ident:
 		if e.Name == "_" {
