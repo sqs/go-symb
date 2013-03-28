@@ -190,6 +190,11 @@ func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(
 	xref.ExprType = t
 	xref.ReferObj = obj
 	if types.Universe.Lookup(obj.GetName()) != obj {
+		if _, isConst := obj.(*types.Const); isConst {
+			// workaround for http://code.google.com/p/go/issues/detail?id=5143
+			// TODO(sqs): remove this when the issue is fixed
+			return true
+		}
 		xref.ReferPos = obj.GetPos()
 	} else {
 		xref.Universe = true
