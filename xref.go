@@ -9,7 +9,7 @@ package xref
 
 import (
 	"bytes"
-	"code.google.com/p/go.exp/go/types"
+	"code.google.com/p/qslack-gotypes/go/types"
 	"fmt"
 	"go/ast"
 	"go/printer"

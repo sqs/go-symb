@@ -1,7 +1,7 @@
 package xref
 
 import (
-	"code.google.com/p/go.exp/go/types"
+	"code.google.com/p/qslack-gotypes/go/types"
 	"encoding/json"
 	"fmt"
 	"go/ast"
