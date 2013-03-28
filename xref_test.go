@@ -74,7 +74,7 @@ func TestVarDeclWithInferredType(t *testing.T) {
 	}
 }
 
-func TestConstCrossPackageXref(t *testing.T) {
+func TestVarCrossPackageXref(t *testing.T) {
 	xs := xrefs(`package p; import "flag"; var A = flag.ErrHelp`)
 
 	if len(xs) != 4 {
