@@ -2,11 +2,17 @@ package xref
 
 import (
 	"code.google.com/p/go.exp/go/types"
+	"encoding/json"
 	"fmt"
 	"go/ast"
+	"go/build"
 	"go/parser"
 	"go/token"
 	"log"
+	"os"
+	"os/exec"
+	"path"
+	"path/filepath"
 	"testing"
 )
 
@@ -116,14 +122,80 @@ func TestFuncSignatureXrefs(t *testing.T) {
 	}
 }
 
+var testPkgPaths = []string{
+	"foo",
+}
+
+func TestXref(t *testing.T) {
+	build.Default.GOPATH, _ = filepath.Abs("test_gopath/")
+	for _, pkgPath := range testPkgPaths {
+		fset := token.NewFileSet()
+		pkgs, err := parser.ParseDir(fset, filepath.Join(build.Default.GOPATH, "src", pkgPath), goFilesOnly, 0)
+		if err != nil {
+			t.Errorf("Error parsing %s: %v", pkgPath, err)
+			continue
+		}
+
+		for _, pkg := range pkgs {
+			for filename, file := range pkg.Files {
+				xs := collectXrefs(file)
+				checkOutput(filename, xs, t)
+			}
+		}
+	}
+}
+
+func goFilesOnly(file os.FileInfo) bool {
+	return file.Mode().IsRegular() && path.Ext(file.Name()) == ".go"
+}
+
+func checkOutput(srcFilename string, xs []Xref, t *testing.T) {
+	actualFilename := srcFilename + "_actual.json"
+	expectedFilename := srcFilename + "_expected.json"
+
+	// write actual output
+	writeJson(actualFilename, xrefsToJson(xs))
+
+	// diff
+	cmd := exec.Command("diff", "-u", expectedFilename, actualFilename)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	cmd.Start()
+	cmd.Wait()
+	if !cmd.ProcessState.Success() {
+		t.Errorf("%s: actual output did not match expected output", srcFilename)
+	}
+}
+
+func writeJson(filename string, v interface{}) {
+	f, err := os.OpenFile(filename, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0666)
+	if err != nil {
+		panic("Error opening file: " + err.Error())
+	}
+	defer f.Close()
+
+	enc, err := json.MarshalIndent(v, "", "  ")
+	if err != nil {
+		panic("Error printing JSON: " + err.Error())
+	}
+
+	_, err = f.Write(enc)
+	if err != nil {
+		panic("Error writing JSON: " + err.Error())
+	}
+	f.Write([]byte{'\n'})
+}
+
+var fset = token.NewFileSet()
+
 func xrefs(src string) []Xref {
-	fset := token.NewFileSet()
 	f, _ := parser.ParseFile(fset, "test.go", src, 0)
 	return collectXrefs(f)
 }
 
 func collectXrefs(f *ast.File) (xs []Xref) {
 	c := NewContext()
+	c.FileSet = fset
 	c.Logf = func(pos token.Pos, f string, a ...interface{}) {
 		if !verbose {
 			return
@@ -152,6 +224,104 @@ func pp(xs []Xref) string {
 		s += x.String()
 	}
 	return s + "]"
+}
+
+func xrefsToJson(xs []Xref) []interface{} {
+	js := make([]interface{}, 0)
+	for _, x := range xs {
+		var exprType string
+		if x.ExprType != nil {
+			exprType = x.ExprType.String()
+		}
+		j := struct {
+			Expr     string
+			Ident    string
+			ExprType string
+			Pkg      interface{}
+			ReferPos token.Position
+			ReferObj interface{}
+			Local    bool
+			Universe bool
+		}{
+			Expr:     pretty(x.Expr),
+			Ident:    pretty(x.Ident),
+			ExprType: exprType,
+			Pkg:      typePackageToJson(x.Pkg),
+			ReferPos: fset.Position(x.ReferPos),
+			ReferObj: typeObjectToJson(&x.ReferObj),
+			Local:    x.Local,
+			Universe: x.Universe,
+		}
+		js = append(js, j)
+	}
+	return js
+}
+
+func typePackageToJson(p *types.Package) interface{} {
+	if p == nil {
+		return nil
+	} else {
+		return struct {
+			Isa, Name, ImportPath string
+		}{
+			"Package", p.Name, p.Path,
+		}
+	}
+}
+
+func typeTypeToJson(t types.Type) interface{} {
+	return t.String()
+}
+
+func typeObjectToJson(o *types.Object) interface{} {
+	switch o := (*o).(type) {
+	case *types.Package:
+		return typePackageToJson(o)
+	case *types.Const:
+		return struct {
+			Isa  string
+			Pkg  interface{}
+			Name string
+			Type interface{}
+			Val  interface{}
+		}{
+			"Const", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type), o.Val,
+		}
+	case *types.TypeName:
+		return struct {
+			Isa  string
+			Pkg  interface{}
+			Name string
+			Type interface{}
+		}{
+			"TypeName", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type),
+		}
+	case *types.Var:
+		return struct {
+			Isa  string
+			Pkg  interface{}
+			Name string
+			Type interface{}
+		}{
+			"Var", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type),
+		}
+	case *types.Func:
+		return struct {
+			Isa  string
+			Pkg  interface{}
+			Name string
+			Type interface{}
+		}{
+			"Func", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type),
+		}
+	default:
+		if o != nil {
+			return nil
+		} else {
+			return "UNKNOWN"
+		}
+	}
+	return nil
 }
 
 func prettys(xs []Xref) string {
