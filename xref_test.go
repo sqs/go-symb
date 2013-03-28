@@ -18,6 +18,8 @@ import (
 
 var verbose bool = true
 
+var fset = token.NewFileSet()
+
 func TestPackage(t *testing.T) {
 	xs := xrefs("package p")
 	if len(xs) != 1 {
@@ -129,7 +131,6 @@ var testPkgPaths = []string{
 func TestXref(t *testing.T) {
 	build.Default.GOPATH, _ = filepath.Abs("test_gopath/")
 	for _, pkgPath := range testPkgPaths {
-		fset := token.NewFileSet()
 		pkgs, err := parser.ParseDir(fset, filepath.Join(build.Default.GOPATH, "src", pkgPath), goFilesOnly, 0)
 		if err != nil {
 			t.Errorf("Error parsing %s: %v", pkgPath, err)
@@ -185,8 +186,6 @@ func writeJson(filename string, v interface{}) {
 	}
 	f.Write([]byte{'\n'})
 }
-
-var fset = token.NewFileSet()
 
 func xrefs(src string) []Xref {
 	f, _ := parser.ParseFile(fset, "test.go", src, 0)
@@ -247,7 +246,7 @@ func xrefsToJson(xs []Xref) []interface{} {
 			Ident:    pretty(x.Ident),
 			ExprType: exprType,
 			Pkg:      typePackageToJson(x.Pkg),
-			ReferPos: fset.Position(x.ReferPos),
+			ReferPos: relativePosition(fset.Position(x.ReferPos)),
 			ReferObj: typeObjectToJson(&x.ReferObj),
 			Local:    x.Local,
 			Universe: x.Universe,
@@ -255,6 +254,12 @@ func xrefsToJson(xs []Xref) []interface{} {
 		js = append(js, j)
 	}
 	return js
+}
+
+func relativePosition(p token.Position) token.Position {
+	cwd, _ := os.Getwd()
+	p.Filename, _ = filepath.Rel(cwd, p.Filename)
+	return p
 }
 
 func typePackageToJson(p *types.Package) interface{} {
