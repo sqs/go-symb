@@ -1,11 +1,9 @@
-// The go/xref package provides a way to iterate over the
-// cross-references in Go source files. It is copied from rog-go's
+// The go/symb package provides a way to iterate over the
+// symbols in Go source files. It is copied from rog-go's
 // go/sym and adds the following features:
-//
-// * generates a unique, meaningful identifier for each xref
-// * establishes cross-references even when there is no symbol
+// * updated to use code.google.com/p/go.exp/go/types
 // * test coverage
-package xref
+package symb
 
 import (
 	"bytes"
@@ -17,9 +15,9 @@ import (
 	"sort"
 )
 
-// Xref holds information about an xref.
-type Xref struct {
-	Expr     ast.Expr   // expression for xref (*ast.Ident or *ast.SelectorExpr)
+// Symb holds information about a symbol.
+type Symb struct {
+	Expr     ast.Expr   // expression for symb (*ast.Ident or *ast.SelectorExpr)
 	Ident    *ast.Ident // identifier in parse tree
 	ExprType types.Type // type of expression.
 	Pkg      *types.Package
@@ -30,7 +28,7 @@ type Xref struct {
 	Universe bool         // whether referred-to object is in universe.
 }
 
-// Context holds the context for IterateXrefs.
+// Context holds the context for IterateSymbs.
 type Context struct {
 	// FileSet holds the fileset used when importing packages.
 	FileSet *token.FileSet
@@ -96,9 +94,9 @@ func sortedFiles(m map[string]*ast.File) []*ast.File {
 	return vallist
 }
 
-// IterateXRefs calls visitf for each xref in the given file.  If
+// IterateSymbs calls visitf for each symb in the given file.  If
 // visitf returns false, the iteration stops.
-func (ctxt *Context) IterateXrefs(pkg *ast.Package, visitf func(xref *Xref) bool) {
+func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool) {
 	pkgFiles := make([]*ast.File, 0)
 	for _, f := range sortedFiles(pkg.Files) {
 		pkgFiles = append(pkgFiles, f)
@@ -206,47 +204,47 @@ func (ctxt *Context) exprInfo(e ast.Expr) (obj types.Object, typ types.Type) {
 	return
 }
 
-func (ctxt *Context) visitExpr(pkg *ast.Package, e ast.Expr, local bool, visitf func(*Xref) bool) bool {
-	var xref Xref
-	xref.Expr = e
-	xref.Pkg = ctxt.currentPackage
-	xref.File = ctxt.currentFile
+func (ctxt *Context) visitExpr(pkg *ast.Package, e ast.Expr, local bool, visitf func(*Symb) bool) bool {
+	var symb Symb
+	symb.Expr = e
+	symb.Pkg = ctxt.currentPackage
+	symb.File = ctxt.currentFile
 	switch e := e.(type) {
 	case *ast.Ident:
 		if e.Name == "_" {
 			return true
 		}
-		xref.Ident = e
+		symb.Ident = e
 	case *ast.SelectorExpr:
-		xref.Ident = e.Sel
+		symb.Ident = e.Sel
 	}
-	obj, t := ctxt.exprInfo(xref.Ident)
+	obj, t := ctxt.exprInfo(symb.Ident)
 	if obj == nil {
-		ctxt.logf(xref.Ident.Pos(), "no object for %s", pretty(e))
+		ctxt.logf(symb.Ident.Pos(), "no object for %s", pretty(e))
 		return true
 	}
-	xref.ExprType = t
-	xref.ReferObj = obj
+	symb.ExprType = t
+	symb.ReferObj = obj
 	if types.Universe.Lookup(obj.GetName()) != obj {
 		if _, isConst := obj.(*types.Const); isConst {
 			// workaround for http://code.google.com/p/go/issues/detail?id=5143
 			// TODO(sqs): remove this when the issue is fixed
 			return true
 		}
-		xref.ReferPos = obj.GetPos()
+		symb.ReferPos = obj.GetPos()
 	} else {
-		xref.Universe = true
+		symb.Universe = true
 	}
 
 	if local {
-		if xref.IsDecl() {
-			xref.Local = local
-			ctxt.locals[xref.ReferObj] = true
+		if symb.IsDecl() {
+			symb.Local = local
+			ctxt.locals[symb.ReferObj] = true
 		} else {
-			xref.Local = ctxt.locals[xref.ReferObj]
+			symb.Local = ctxt.locals[symb.ReferObj]
 		}
 	}
-	return visitf(&xref)
+	return visitf(&symb)
 }
 
 type astVisitor func(n ast.Node) bool
@@ -294,10 +292,10 @@ func typeBaseType(t types.Type) types.Type {
 	return t
 }
 
-func (x *Xref) IsDecl() bool {
+func (x *Symb) IsDecl() bool {
 	return x.ReferPos == x.Ident.Pos()
 }
 
-func (x *Xref) String() string {
-	return fmt.Sprintf("Xref{Expr=%v, Ident=%v, ExprType=%v}", x.Expr, x.Ident, x.ExprType)
+func (x *Symb) String() string {
+	return fmt.Sprintf("Symb{Expr=%v, Ident=%v, ExprType=%v}", x.Expr, x.Ident, x.ExprType)
 }

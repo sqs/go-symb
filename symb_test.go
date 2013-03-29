@@ -1,4 +1,4 @@
-package xref
+package symb
 
 import (
 	"code.google.com/p/qslack-gotypes/go/types"
@@ -24,7 +24,7 @@ var testPkgPaths = []string{
 	"foo",
 }
 
-func TestXref(t *testing.T) {
+func TestSymb(t *testing.T) {
 	build.Default.GOPATH, _ = filepath.Abs("test_gopath/")
 	for _, pkgPath := range testPkgPaths {
 		pkgs, err := parser.ParseDir(fset, filepath.Join(build.Default.GOPATH, "src", pkgPath), goFilesOnly, parser.AllErrors|parser.DeclarationErrors)
@@ -34,18 +34,18 @@ func TestXref(t *testing.T) {
 		}
 
 		for _, pkg := range pkgs {
-			xrefs := collectXrefs(pkg)
-			xrefsByFilename := make(map[string][]Xref, 0)
-			for _, x := range xrefs {
+			symbs := collectSymbs(pkg)
+			symbsByFilename := make(map[string][]Symb, 0)
+			for _, x := range symbs {
 				filename := fset.Position(x.Ident.Pos()).Filename
-				if xrefsByFilename[filename] == nil {
-					xrefsByFilename[filename] = make([]Xref, 0)
+				if symbsByFilename[filename] == nil {
+					symbsByFilename[filename] = make([]Symb, 0)
 				}
-				xrefsByFilename[filename] = append(xrefsByFilename[filename], x)
+				symbsByFilename[filename] = append(symbsByFilename[filename], x)
 			}
 
-			for filename, xs := range xrefsByFilename {
-				checkOutput(filename, xs, t)
+			for filename, symbs := range symbsByFilename {
+				checkOutput(filename, symbs, t)
 			}
 		}
 	}
@@ -55,12 +55,12 @@ func goFilesOnly(file os.FileInfo) bool {
 	return file.Mode().IsRegular() && path.Ext(file.Name()) == ".go"
 }
 
-func checkOutput(srcFilename string, xs []Xref, t *testing.T) {
+func checkOutput(srcFilename string, symbs []Symb, t *testing.T) {
 	actualFilename := srcFilename + "_actual.json"
 	expectedFilename := srcFilename + "_expected.json"
 
 	// write actual output
-	writeJson(actualFilename, xrefsToJson(xs))
+	writeJson(actualFilename, symbsToJson(symbs))
 
 	// diff
 	cmd := exec.Command("diff", "-u", expectedFilename, actualFilename)
@@ -92,7 +92,7 @@ func writeJson(filename string, v interface{}) {
 	f.Write([]byte{'\n'})
 }
 
-func collectXrefs(pkg *ast.Package) (xs []Xref) {
+func collectSymbs(pkg *ast.Package) (symbs []Symb) {
 	c := NewContext()
 	c.FileSet = fset
 	c.Logf = func(pos token.Pos, f string, a ...interface{}) {
@@ -102,21 +102,21 @@ func collectXrefs(pkg *ast.Package) (xs []Xref) {
 		log.Printf("%v: %s", c.position(pos), fmt.Sprintf(f, a...))
 	}
 
-	xs = make([]Xref, 0)
-	c.IterateXrefs(pkg, func(xref *Xref) bool {
-		xs = append(xs, *xref)
+	symbs = make([]Symb, 0)
+	c.IterateSymbs(pkg, func(symb *Symb) bool {
+		symbs = append(symbs, *symb)
 		return true
 	})
-	return xs
+	return symbs
 }
 
 func (ctxt *Context) position(pos token.Pos) token.Position {
 	return ctxt.FileSet.Position(pos)
 }
 
-func pp(xs []Xref) string {
+func pp(symbs []Symb) string {
 	s := "["
-	for i, x := range xs {
+	for i, x := range symbs {
 		if i > 0 {
 			s += ", "
 		}
@@ -125,9 +125,9 @@ func pp(xs []Xref) string {
 	return s + "]"
 }
 
-func xrefsToJson(xs []Xref) []interface{} {
+func symbsToJson(symbs []Symb) []interface{} {
 	js := make([]interface{}, 0)
-	for _, x := range xs {
+	for _, x := range symbs {
 		var exprType string
 		if x.ExprType != nil {
 			exprType = x.ExprType.String()
@@ -239,9 +239,9 @@ func typeObjectToJson(o *types.Object) interface{} {
 	return nil
 }
 
-func prettys(xs []Xref) string {
+func prettys(symbs []Symb) string {
 	s := "["
-	for i, x := range xs {
+	for i, x := range symbs {
 		if i > 0 {
 			s += ", "
 		}
