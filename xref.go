@@ -23,6 +23,7 @@ type Xref struct {
 	Ident    *ast.Ident // identifier in parse tree
 	ExprType types.Type // type of expression.
 	Pkg      *types.Package
+	File     *ast.File
 	ReferPos token.Pos    // position of referred-to thing.
 	ReferObj types.Object // object referred to.
 	Local    bool         // whether referred-to object is function-local.
@@ -42,6 +43,7 @@ type Context struct {
 
 	typesCtxt      types.Context
 	currentPackage *types.Package // the last package that was returned by types.Check
+	currentFile    *ast.File      // the file whose AST we're currently walking
 
 	// Logf is used to print warning messages.
 	// If it is nil, no warning messages will be printed.
@@ -166,10 +168,12 @@ func (ctxt *Context) IterateXrefs(pkg *ast.Package, visitf func(xref *Xref) bool
 			return false
 
 		case *ast.File:
+			ctxt.currentFile = n
 			ok = ctxt.visitExpr(pkg, n.Name, false, visitf)
 			for _, d := range n.Decls {
 				ast.Walk(visit, d)
 			}
+			ctxt.currentFile = nil
 			return false
 		}
 
@@ -202,6 +206,7 @@ func (ctxt *Context) visitExpr(pkg *ast.Package, e ast.Expr, local bool, visitf 
 	var xref Xref
 	xref.Expr = e
 	xref.Pkg = ctxt.currentPackage
+	xref.File = ctxt.currentFile
 	switch e := e.(type) {
 	case *ast.Ident:
 		if e.Name == "_" {

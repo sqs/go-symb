@@ -138,6 +138,7 @@ func xrefsToJson(xs []Xref) []interface{} {
 			IdentPos interface{}
 			ExprType string
 			Pkg      interface{}
+			FileName string
 			ReferPos token.Position
 			ReferObj interface{}
 			Local    bool
@@ -149,6 +150,7 @@ func xrefsToJson(xs []Xref) []interface{} {
 			IdentPos: relativePosition(fset.Position(x.Ident.Pos())),
 			ExprType: exprType,
 			Pkg:      typePackageToJson(x.Pkg),
+			FileName: x.File.Name.Name,
 			ReferPos: relativePosition(fset.Position(x.ReferPos)),
 			ReferObj: typeObjectToJson(&x.ReferObj),
 			Local:    x.Local,
