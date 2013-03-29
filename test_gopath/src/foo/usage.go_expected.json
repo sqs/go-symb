@@ -170,7 +170,7 @@
       "Name": "A",
       "Type": "func(b string, c string, d bool) (e int, f int, g uint)"
     },
-    "Local": true,
+    "Local": false,
     "Universe": false,
     "IsDecl": false
   },
@@ -203,7 +203,7 @@
       "Type": "untyped boolean",
       "Val": true
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },

@@ -41,6 +41,9 @@ type Context struct {
 	// exprTypes stores off go/types typecheck results for each expr.
 	exprTypes map[ast.Expr]types.Type
 
+	// stores true if the object was defined in a function-local scope
+	locals map[types.Object]bool
+
 	typesCtxt      types.Context
 	currentPackage *types.Package // the last package that was returned by types.Check
 	currentFile    *ast.File      // the file whose AST we're currently walking
@@ -56,6 +59,7 @@ func NewContext() *Context {
 		FileSet:   token.NewFileSet(),
 		idObjs:    make(map[*ast.Ident]types.Object, 0),
 		exprTypes: make(map[ast.Expr]types.Type, 0),
+		locals:    make(map[types.Object]bool, 0),
 		typesCtxt: types.Context{
 			Ident: func(id *ast.Ident, obj types.Object) {
 				ctxt.idObjs[id] = obj
@@ -233,7 +237,15 @@ func (ctxt *Context) visitExpr(pkg *ast.Package, e ast.Expr, local bool, visitf 
 	} else {
 		xref.Universe = true
 	}
-	xref.Local = local
+
+	if local {
+		if xref.IsDecl() {
+			xref.Local = local
+			ctxt.locals[xref.ReferObj] = true
+		} else {
+			xref.Local = ctxt.locals[xref.ReferObj]
+		}
+	}
 	return visitf(&xref)
 }
 

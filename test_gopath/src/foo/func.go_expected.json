@@ -166,7 +166,7 @@
       "Name": "string",
       "Type": "string"
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },
@@ -234,7 +234,7 @@
       "Name": "bool",
       "Type": "bool"
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },
@@ -338,7 +338,7 @@
       "Name": "int",
       "Type": "int"
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },
@@ -406,7 +406,7 @@
       "Name": "uint",
       "Type": "uint"
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },
@@ -547,7 +547,7 @@
       "Type": "untyped boolean",
       "Val": true
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },
@@ -651,7 +651,7 @@
       "Name": "len",
       "Type": "\u003ctype of len\u003e"
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },
@@ -791,7 +791,7 @@
       "Name": "uint",
       "Type": "uint"
     },
-    "Local": true,
+    "Local": false,
     "Universe": true,
     "IsDecl": false
   },
