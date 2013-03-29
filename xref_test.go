@@ -241,6 +241,7 @@ func xrefsToJson(xs []Xref) []interface{} {
 			ReferObj interface{}
 			Local    bool
 			Universe bool
+			IsDecl   bool
 		}{
 			Expr:     pretty(x.Expr),
 			Ident:    pretty(x.Ident),
@@ -250,6 +251,7 @@ func xrefsToJson(xs []Xref) []interface{} {
 			ReferObj: typeObjectToJson(&x.ReferObj),
 			Local:    x.Local,
 			Universe: x.Universe,
+			IsDecl:   x.IsDecl(),
 		}
 		js = append(js, j)
 	}

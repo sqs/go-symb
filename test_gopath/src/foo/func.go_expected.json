@@ -20,7 +20,8 @@
       "ImportPath": ""
     },
     "Local": false,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   },
   {
     "Expr": "A",
@@ -48,7 +49,8 @@
       "Type": "func(b string, c string, d bool) (e int, f int, g uint)"
     },
     "Local": false,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "b",
@@ -76,7 +78,8 @@
       "Type": "string"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "c",
@@ -104,7 +107,8 @@
       "Type": "string"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "string",
@@ -128,7 +132,8 @@
       "Type": "string"
     },
     "Local": true,
-    "Universe": true
+    "Universe": true,
+    "IsDecl": false
   },
   {
     "Expr": "d",
@@ -156,7 +161,8 @@
       "Type": "bool"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "bool",
@@ -180,7 +186,8 @@
       "Type": "bool"
     },
     "Local": true,
-    "Universe": true
+    "Universe": true,
+    "IsDecl": false
   },
   {
     "Expr": "e",
@@ -208,7 +215,8 @@
       "Type": "int"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "f",
@@ -236,7 +244,8 @@
       "Type": "int"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "int",
@@ -260,7 +269,8 @@
       "Type": "int"
     },
     "Local": true,
-    "Universe": true
+    "Universe": true,
+    "IsDecl": false
   },
   {
     "Expr": "g",
@@ -288,7 +298,8 @@
       "Type": "uint"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "uint",
@@ -312,7 +323,8 @@
       "Type": "uint"
     },
     "Local": true,
-    "Universe": true
+    "Universe": true,
+    "IsDecl": false
   },
   {
     "Expr": "bb",
@@ -340,7 +352,8 @@
       "Type": "string"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": true
   },
   {
     "Expr": "b",
@@ -368,7 +381,8 @@
       "Type": "string"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   },
   {
     "Expr": "d",
@@ -396,7 +410,8 @@
       "Type": "bool"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   },
   {
     "Expr": "true",
@@ -421,7 +436,8 @@
       "Val": true
     },
     "Local": true,
-    "Universe": true
+    "Universe": true,
+    "IsDecl": false
   },
   {
     "Expr": "e",
@@ -449,7 +465,8 @@
       "Type": "int"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   },
   {
     "Expr": "f",
@@ -477,7 +494,8 @@
       "Type": "int"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   },
   {
     "Expr": "len",
@@ -501,7 +519,8 @@
       "Type": "\u003ctype of len\u003e"
     },
     "Local": true,
-    "Universe": true
+    "Universe": true,
+    "IsDecl": false
   },
   {
     "Expr": "c",
@@ -529,7 +548,8 @@
       "Type": "string"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   },
   {
     "Expr": "g",
@@ -557,7 +577,8 @@
       "Type": "uint"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   },
   {
     "Expr": "e",
@@ -585,6 +606,7 @@
       "Type": "int"
     },
     "Local": true,
-    "Universe": false
+    "Universe": false,
+    "IsDecl": false
   }
 ]
