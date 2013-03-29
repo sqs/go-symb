@@ -135,13 +135,85 @@
     "IsDecl": false
   },
   {
-    "Expr": "NonLocalFunc",
+    "Expr": "localRecv",
+    "Ident": "localRecv",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/local.go",
+      "Offset": 63,
+      "Line": 7,
+      "Column": 7
+    },
+    "ExprType": "*NonLocalType",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/local.go",
+      "Offset": 63,
+      "Line": 7,
+      "Column": 7
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "localRecv",
+      "Type": "*NonLocalType"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "NonLocalType",
+    "Ident": "NonLocalType",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/local.go",
+      "Offset": 74,
+      "Line": 7,
+      "Column": 18
+    },
+    "ExprType": "NonLocalType",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/local.go",
+      "Offset": 39,
+      "Line": 5,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "TypeName",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "NonLocalType",
+      "Type": "NonLocalType"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "(*NonLocalType).NonLocalFunc",
     "Ident": "NonLocalFunc",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 62,
+      "Offset": 88,
       "Line": 7,
-      "Column": 6
+      "Column": 32
     },
     "ExprType": "func(localParam int) (localResult int)",
     "Pkg": {
@@ -152,9 +224,9 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 62,
+      "Offset": 88,
       "Line": 7,
-      "Column": 6
+      "Column": 32
     },
     "ReferObj": {
       "Isa": "Func",
@@ -175,9 +247,9 @@
     "Ident": "localParam",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 75,
+      "Offset": 101,
       "Line": 7,
-      "Column": 19
+      "Column": 45
     },
     "ExprType": "int",
     "Pkg": {
@@ -188,9 +260,9 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 75,
+      "Offset": 101,
       "Line": 7,
-      "Column": 19
+      "Column": 45
     },
     "ReferObj": {
       "Isa": "Var",
@@ -211,9 +283,9 @@
     "Ident": "int",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 86,
+      "Offset": 112,
       "Line": 7,
-      "Column": 30
+      "Column": 56
     },
     "ExprType": "int",
     "Pkg": {
@@ -243,9 +315,9 @@
     "Ident": "localResult",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 92,
+      "Offset": 118,
       "Line": 7,
-      "Column": 36
+      "Column": 62
     },
     "ExprType": "int",
     "Pkg": {
@@ -256,9 +328,9 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 92,
+      "Offset": 118,
       "Line": 7,
-      "Column": 36
+      "Column": 62
     },
     "ReferObj": {
       "Isa": "Var",
@@ -279,9 +351,9 @@
     "Ident": "int",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 104,
+      "Offset": 130,
       "Line": 7,
-      "Column": 48
+      "Column": 74
     },
     "ExprType": "int",
     "Pkg": {
@@ -311,7 +383,7 @@
     "Ident": "localVar",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 116,
+      "Offset": 142,
       "Line": 8,
       "Column": 6
     },
@@ -324,7 +396,7 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 116,
+      "Offset": 142,
       "Line": 8,
       "Column": 6
     },
@@ -347,7 +419,7 @@
     "Ident": "int",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 125,
+      "Offset": 151,
       "Line": 8,
       "Column": 15
     },
@@ -379,7 +451,7 @@
     "Ident": "println",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 134,
+      "Offset": 160,
       "Line": 9,
       "Column": 2
     },
@@ -411,7 +483,7 @@
     "Ident": "NonLocalVar",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 142,
+      "Offset": 168,
       "Line": 9,
       "Column": 10
     },
@@ -443,15 +515,15 @@
     "IsDecl": false
   },
   {
-    "Expr": "NonLocalFunc",
-    "Ident": "NonLocalFunc",
+    "Expr": "localRecv",
+    "Ident": "localRecv",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 155,
+      "Offset": 181,
       "Line": 9,
       "Column": 23
     },
-    "ExprType": "func(localParam int) (localResult int)",
+    "ExprType": "NonLocalType",
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
@@ -460,21 +532,21 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 62,
+      "Offset": 63,
       "Line": 7,
-      "Column": 6
+      "Column": 7
     },
     "ReferObj": {
-      "Isa": "Func",
+      "Isa": "Var",
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
         "ImportPath": ""
       },
-      "Name": "NonLocalFunc",
-      "Type": "func(localParam int) (localResult int)"
+      "Name": "localRecv",
+      "Type": "*NonLocalType"
     },
-    "Local": false,
+    "Local": true,
     "Universe": false,
     "IsDecl": false
   },
@@ -483,9 +555,9 @@
     "Ident": "NonLocalType",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 169,
+      "Offset": 205,
       "Line": 9,
-      "Column": 37
+      "Column": 47
     },
     "ExprType": "NonLocalType",
     "Pkg": {
@@ -519,9 +591,9 @@
     "Ident": "localVar",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 186,
+      "Offset": 222,
       "Line": 9,
-      "Column": 54
+      "Column": 64
     },
     "ExprType": "int",
     "Pkg": {
@@ -532,7 +604,7 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 116,
+      "Offset": 142,
       "Line": 8,
       "Column": 6
     },
@@ -555,9 +627,9 @@
     "Ident": "localParam",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 196,
+      "Offset": 232,
       "Line": 9,
-      "Column": 64
+      "Column": 74
     },
     "ExprType": "int",
     "Pkg": {
@@ -568,9 +640,9 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 75,
+      "Offset": 101,
       "Line": 7,
-      "Column": 19
+      "Column": 45
     },
     "ReferObj": {
       "Isa": "Var",
@@ -591,9 +663,9 @@
     "Ident": "localResult",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 208,
+      "Offset": 244,
       "Line": 9,
-      "Column": 76
+      "Column": 86
     },
     "ExprType": "int",
     "Pkg": {
@@ -604,9 +676,9 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 92,
+      "Offset": 118,
       "Line": 7,
-      "Column": 36
+      "Column": 62
     },
     "ReferObj": {
       "Isa": "Var",
@@ -627,7 +699,7 @@
     "Ident": "localVar",
     "IdentPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 229,
+      "Offset": 265,
       "Line": 10,
       "Column": 9
     },
@@ -640,7 +712,7 @@
     "FileName": "foo",
     "ReferPos": {
       "Filename": "test_gopath/src/foo/local.go",
-      "Offset": 116,
+      "Offset": 142,
       "Line": 8,
       "Column": 6
     },

@@ -128,6 +128,7 @@ func (ctxt *Context) IterateXrefs(pkg *ast.Package, visitf func(xref *Xref) bool
 			if n.Recv == nil && n.Name.Name == "init" {
 				n.Name.Obj = ast.NewObj(ast.Fun, "init")
 			}
+			local = true
 			if n.Recv != nil {
 				ast.Walk(visit, n.Recv)
 			}
@@ -146,7 +147,6 @@ func (ctxt *Context) IterateXrefs(pkg *ast.Package, visitf func(xref *Xref) bool
 				}
 			}
 			ok = ctxt.visitExpr(pkg, e, false, visitf)
-			local = true
 			ast.Walk(visit, n.Type)
 			if n.Body != nil {
 				ast.Walk(visit, n.Body)
