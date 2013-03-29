@@ -2,6 +2,12 @@
   {
     "Expr": "foo",
     "Ident": "foo",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 8,
+      "Line": 1,
+      "Column": 9
+    },
     "ExprType": "",
     "Pkg": {
       "Isa": "Package",
@@ -26,6 +32,12 @@
   {
     "Expr": "A",
     "Ident": "A",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
     "ExprType": "func(b string, c string, d bool) (e int, f int, g uint)",
     "Pkg": {
       "Isa": "Package",
@@ -55,6 +67,12 @@
   {
     "Expr": "b",
     "Ident": "b",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 20,
+      "Line": 3,
+      "Column": 8
+    },
     "ExprType": "string",
     "Pkg": {
       "Isa": "Package",
@@ -84,6 +102,12 @@
   {
     "Expr": "c",
     "Ident": "c",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 23,
+      "Line": 3,
+      "Column": 11
+    },
     "ExprType": "string",
     "Pkg": {
       "Isa": "Package",
@@ -113,6 +137,12 @@
   {
     "Expr": "string",
     "Ident": "string",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 25,
+      "Line": 3,
+      "Column": 13
+    },
     "ExprType": "string",
     "Pkg": {
       "Isa": "Package",
@@ -138,6 +168,12 @@
   {
     "Expr": "d",
     "Ident": "d",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 33,
+      "Line": 3,
+      "Column": 21
+    },
     "ExprType": "bool",
     "Pkg": {
       "Isa": "Package",
@@ -167,6 +203,12 @@
   {
     "Expr": "bool",
     "Ident": "bool",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 35,
+      "Line": 3,
+      "Column": 23
+    },
     "ExprType": "bool",
     "Pkg": {
       "Isa": "Package",
@@ -192,6 +234,12 @@
   {
     "Expr": "e",
     "Ident": "e",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 42,
+      "Line": 3,
+      "Column": 30
+    },
     "ExprType": "int",
     "Pkg": {
       "Isa": "Package",
@@ -221,6 +269,12 @@
   {
     "Expr": "f",
     "Ident": "f",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 45,
+      "Line": 3,
+      "Column": 33
+    },
     "ExprType": "int",
     "Pkg": {
       "Isa": "Package",
@@ -250,6 +304,12 @@
   {
     "Expr": "int",
     "Ident": "int",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 47,
+      "Line": 3,
+      "Column": 35
+    },
     "ExprType": "int",
     "Pkg": {
       "Isa": "Package",
@@ -275,6 +335,12 @@
   {
     "Expr": "g",
     "Ident": "g",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 52,
+      "Line": 3,
+      "Column": 40
+    },
     "ExprType": "uint",
     "Pkg": {
       "Isa": "Package",
@@ -304,6 +370,12 @@
   {
     "Expr": "uint",
     "Ident": "uint",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 54,
+      "Line": 3,
+      "Column": 42
+    },
     "ExprType": "uint",
     "Pkg": {
       "Isa": "Package",
@@ -329,6 +401,12 @@
   {
     "Expr": "bb",
     "Ident": "bb",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 63,
+      "Line": 4,
+      "Column": 2
+    },
     "ExprType": "string",
     "Pkg": {
       "Isa": "Package",
@@ -358,6 +436,12 @@
   {
     "Expr": "b",
     "Ident": "b",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 69,
+      "Line": 4,
+      "Column": 8
+    },
     "ExprType": "string",
     "Pkg": {
       "Isa": "Package",
@@ -387,6 +471,12 @@
   {
     "Expr": "d",
     "Ident": "d",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 72,
+      "Line": 5,
+      "Column": 2
+    },
     "ExprType": "bool",
     "Pkg": {
       "Isa": "Package",
@@ -416,6 +506,12 @@
   {
     "Expr": "true",
     "Ident": "true",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 76,
+      "Line": 5,
+      "Column": 6
+    },
     "ExprType": "bool",
     "Pkg": {
       "Isa": "Package",
@@ -442,6 +538,12 @@
   {
     "Expr": "e",
     "Ident": "e",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 82,
+      "Line": 6,
+      "Column": 2
+    },
     "ExprType": "int",
     "Pkg": {
       "Isa": "Package",
@@ -471,6 +573,12 @@
   {
     "Expr": "f",
     "Ident": "f",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 89,
+      "Line": 7,
+      "Column": 2
+    },
     "ExprType": "int",
     "Pkg": {
       "Isa": "Package",
@@ -500,6 +608,12 @@
   {
     "Expr": "len",
     "Ident": "len",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 93,
+      "Line": 7,
+      "Column": 6
+    },
     "ExprType": "\u003ctype of len\u003e",
     "Pkg": {
       "Isa": "Package",
@@ -525,6 +639,12 @@
   {
     "Expr": "c",
     "Ident": "c",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 97,
+      "Line": 7,
+      "Column": 10
+    },
     "ExprType": "string",
     "Pkg": {
       "Isa": "Package",
@@ -552,8 +672,49 @@
     "IsDecl": false
   },
   {
+    "Expr": "bb",
+    "Ident": "bb",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 101,
+      "Line": 7,
+      "Column": 14
+    },
+    "ExprType": "string",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 63,
+      "Line": 4,
+      "Column": 2
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "bb",
+      "Type": "string"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
     "Expr": "g",
     "Ident": "g",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 106,
+      "Line": 8,
+      "Column": 2
+    },
     "ExprType": "uint",
     "Pkg": {
       "Isa": "Package",
@@ -581,8 +742,45 @@
     "IsDecl": false
   },
   {
+    "Expr": "uint",
+    "Ident": "uint",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 110,
+      "Line": 8,
+      "Column": 6
+    },
+    "ExprType": "uint",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "TypeName",
+      "Pkg": null,
+      "Name": "uint",
+      "Type": "uint"
+    },
+    "Local": true,
+    "Universe": true,
+    "IsDecl": false
+  },
+  {
     "Expr": "e",
     "Ident": "e",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 115,
+      "Line": 8,
+      "Column": 11
+    },
     "ExprType": "int",
     "Pkg": {
       "Isa": "Package",

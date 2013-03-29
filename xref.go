@@ -75,8 +75,12 @@ func (ctxt *Context) logf(pos token.Pos, f string, a ...interface{}) {
 
 // IterateXRefs calls visitf for each xref in the given file.  If
 // visitf returns false, the iteration stops.
-func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
-	ctxt.currentPackage, _ = ctxt.typesCtxt.Check(ctxt.FileSet, []*ast.File{f})
+func (ctxt *Context) IterateXrefs(pkg *ast.Package, visitf func(xref *Xref) bool) {
+	pkgFiles := make([]*ast.File, 0)
+	for _, f := range pkg.Files {
+		pkgFiles = append(pkgFiles, f)
+	}
+	ctxt.currentPackage, _ = ctxt.typesCtxt.Check(ctxt.FileSet, pkgFiles)
 
 	var visit astVisitor
 	ok := true
@@ -118,7 +122,7 @@ func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
 					Sel: n.Name,
 				}
 			}
-			ok = ctxt.visitExpr(f, e, false, visitf)
+			ok = ctxt.visitExpr(pkg, e, false, visitf)
 			local = true
 			ast.Walk(visit, n.Type)
 			if n.Body != nil {
@@ -128,7 +132,7 @@ func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
 			return false
 
 		case *ast.Ident:
-			ok = ctxt.visitExpr(f, n, local, visitf)
+			ok = ctxt.visitExpr(pkg, n, local, visitf)
 			return false
 
 		case *ast.KeyValueExpr:
@@ -141,11 +145,11 @@ func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
 
 		case *ast.SelectorExpr:
 			ast.Walk(visit, n.X)
-			ok = ctxt.visitExpr(f, n, local, visitf)
+			ok = ctxt.visitExpr(pkg, n, local, visitf)
 			return false
 
 		case *ast.File:
-			ok = ctxt.visitExpr(f, n.Name, false, visitf)
+			ok = ctxt.visitExpr(pkg, n.Name, false, visitf)
 			for _, d := range n.Decls {
 				ast.Walk(visit, d)
 			}
@@ -154,7 +158,7 @@ func (ctxt *Context) IterateXrefs(f *ast.File, visitf func(xref *Xref) bool) {
 
 		return true
 	}
-	ast.Walk(visit, f)
+	ast.Walk(visit, pkg)
 }
 
 func (ctxt *Context) filename(f *ast.File) string {
@@ -172,7 +176,7 @@ func (ctxt *Context) exprInfo(e ast.Expr) (obj types.Object, typ types.Type) {
 	return
 }
 
-func (ctxt *Context) visitExpr(f *ast.File, e ast.Expr, local bool, visitf func(*Xref) bool) bool {
+func (ctxt *Context) visitExpr(pkg *ast.Package, e ast.Expr, local bool, visitf func(*Xref) bool) bool {
 	var xref Xref
 	xref.Expr = e
 	xref.Pkg = ctxt.currentPackage

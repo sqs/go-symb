@@ -1,0 +1,344 @@
+[
+  {
+    "Expr": "foo",
+    "Ident": "foo",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 8,
+      "Line": 1,
+      "Column": 9
+    },
+    "ExprType": "",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "B",
+    "Ident": "B",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
+    "ExprType": "func()",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "B",
+      "Type": "func()"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "eB",
+    "Ident": "eB",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 25,
+      "Line": 4,
+      "Column": 2
+    },
+    "ExprType": "int",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 25,
+      "Line": 4,
+      "Column": 2
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "eB",
+      "Type": "int"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "fB",
+    "Ident": "fB",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 29,
+      "Line": 4,
+      "Column": 6
+    },
+    "ExprType": "int",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 29,
+      "Line": 4,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "fB",
+      "Type": "int"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "A",
+    "Ident": "A",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 38,
+      "Line": 4,
+      "Column": 15
+    },
+    "ExprType": "func(b string, c string, d bool) (e int, f int, g uint)",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/func.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "A",
+      "Type": "func(b string, c string, d bool) (e int, f int, g uint)"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "true",
+    "Ident": "true",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 50,
+      "Line": 4,
+      "Column": 27
+    },
+    "ExprType": "bool",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "Const",
+      "Pkg": null,
+      "Name": "true",
+      "Type": "untyped boolean",
+      "Val": true
+    },
+    "Local": true,
+    "Universe": true,
+    "IsDecl": false
+  },
+  {
+    "Expr": "eB",
+    "Ident": "eB",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 57,
+      "Line": 5,
+      "Column": 2
+    },
+    "ExprType": "int",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 25,
+      "Line": 4,
+      "Column": 2
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "eB",
+      "Type": "int"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "fB",
+    "Ident": "fB",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 62,
+      "Line": 5,
+      "Column": 7
+    },
+    "ExprType": "int",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 29,
+      "Line": 4,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "fB",
+      "Type": "int"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "fB",
+    "Ident": "fB",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 66,
+      "Line": 6,
+      "Column": 2
+    },
+    "ExprType": "int",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 29,
+      "Line": 4,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "fB",
+      "Type": "int"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "eB",
+    "Ident": "eB",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 71,
+      "Line": 6,
+      "Column": 7
+    },
+    "ExprType": "int",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/usage.go",
+      "Offset": 25,
+      "Line": 4,
+      "Column": 2
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "eB",
+      "Type": "int"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": false
+  }
+]
