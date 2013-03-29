@@ -1,0 +1,270 @@
+[
+  {
+    "Expr": "foo",
+    "Ident": "foo",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 8,
+      "Line": 1,
+      "Column": 9
+    },
+    "ExprType": "",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "main",
+    "Ident": "main",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 45,
+      "Line": 8,
+      "Column": 6
+    },
+    "ExprType": "func()",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 45,
+      "Line": 8,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": ""
+      },
+      "Name": "main",
+      "Type": "func()"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "flag",
+    "Ident": "flag",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 55,
+      "Line": 9,
+      "Column": 2
+    },
+    "ExprType": "",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 23,
+      "Line": 4,
+      "Column": 2
+    },
+    "ReferObj": {
+      "Isa": "Package",
+      "Name": "flag",
+      "ImportPath": ""
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "flag.Usage",
+    "Ident": "Usage",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 60,
+      "Line": 9,
+      "Column": 7
+    },
+    "ExprType": "func()",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "flag",
+        "ImportPath": "flag"
+      },
+      "Name": "Usage",
+      "Type": "func()"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "flag",
+    "Ident": "flag",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 79,
+      "Line": 10,
+      "Column": 2
+    },
+    "ExprType": "",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 23,
+      "Line": 4,
+      "Column": 2
+    },
+    "ReferObj": {
+      "Isa": "Package",
+      "Name": "flag",
+      "ImportPath": ""
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "flag.Parse",
+    "Ident": "Parse",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 84,
+      "Line": 10,
+      "Column": 7
+    },
+    "ExprType": "func()",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "flag",
+        "ImportPath": "flag"
+      },
+      "Name": "Parse",
+      "Type": "func()"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "fmt",
+    "Ident": "fmt",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 93,
+      "Line": 11,
+      "Column": 2
+    },
+    "ExprType": "",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 31,
+      "Line": 5,
+      "Column": 2
+    },
+    "ReferObj": {
+      "Isa": "Package",
+      "Name": "fmt",
+      "ImportPath": ""
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "fmt.Println",
+    "Ident": "Println",
+    "IdentPos": {
+      "Filename": "test_gopath/src/foo/stdlib.go",
+      "Offset": 97,
+      "Line": 11,
+      "Column": 6
+    },
+    "ExprType": "func(a·3 ...interface{}) (n·1 int, err·2 error)",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": ""
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "fmt",
+        "ImportPath": "fmt"
+      },
+      "Name": "Println",
+      "Type": "func(a·3 ...interface{}) (n·1 int, err·2 error)"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  }
+]
