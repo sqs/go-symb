@@ -14,6 +14,7 @@ import (
 	"go/ast"
 	"go/printer"
 	"go/token"
+	"sort"
 )
 
 // Xref holds information about an xref.
@@ -73,11 +74,27 @@ func (ctxt *Context) logf(pos token.Pos, f string, a ...interface{}) {
 	ctxt.Logf(pos, f, a...)
 }
 
+func sortedFiles(m map[string]*ast.File) []*ast.File {
+	keylist := make([]string, len(m))
+	i := 0
+	for filename, _ := range m {
+		keylist[i] = filename
+		i++
+	}
+	sort.Strings(keylist)
+
+	vallist := make([]*ast.File, len(m))
+	for i, filename := range keylist {
+		vallist[i] = m[filename]
+	}
+	return vallist
+}
+
 // IterateXRefs calls visitf for each xref in the given file.  If
 // visitf returns false, the iteration stops.
 func (ctxt *Context) IterateXrefs(pkg *ast.Package, visitf func(xref *Xref) bool) {
 	pkgFiles := make([]*ast.File, 0)
-	for _, f := range pkg.Files {
+	for _, f := range sortedFiles(pkg.Files) {
 		pkgFiles = append(pkgFiles, f)
 	}
 	ctxt.currentPackage, _ = ctxt.typesCtxt.Check(ctxt.FileSet, pkgFiles)
@@ -158,7 +175,12 @@ func (ctxt *Context) IterateXrefs(pkg *ast.Package, visitf func(xref *Xref) bool
 
 		return true
 	}
-	ast.Walk(visit, pkg)
+
+	// We sorted pkg.Files by name into pkgFiles above. It needs to be
+	// sorted, or else our walk order is nondeterministic.
+	for _, file := range pkgFiles {
+		ast.Walk(visit, file)
+	}
 }
 
 func (ctxt *Context) filename(f *ast.File) string {
