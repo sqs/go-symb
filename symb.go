@@ -103,9 +103,6 @@ func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool
 		pkgFiles = append(pkgFiles, f)
 	}
 	ctxt.currentPackage, err = ctxt.typesCtxt.Check(ctxt.FileSet, pkgFiles)
-	if err != nil {
-		return err
-	}
 
 	var visit astVisitor
 	ok := true
@@ -192,7 +189,7 @@ func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool
 		ast.Walk(visit, file)
 	}
 
-	return nil
+	return err
 }
 
 func (ctxt *Context) filename(f *ast.File) string {
