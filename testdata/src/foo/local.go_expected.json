@@ -3,7 +3,7 @@
     "Expr": "foo",
     "Ident": "foo",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 8,
       "Line": 1,
       "Column": 9
@@ -34,7 +34,7 @@
     "Expr": "NonLocalVar",
     "Ident": "NonLocalVar",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 17,
       "Line": 3,
       "Column": 5
@@ -47,7 +47,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 17,
       "Line": 3,
       "Column": 5
@@ -70,7 +70,7 @@
     "Expr": "NonLocalType",
     "Ident": "NonLocalType",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 39,
       "Line": 5,
       "Column": 6
@@ -83,7 +83,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 39,
       "Line": 5,
       "Column": 6
@@ -106,7 +106,7 @@
     "Expr": "int",
     "Ident": "int",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 52,
       "Line": 5,
       "Column": 19
@@ -138,7 +138,7 @@
     "Expr": "localRecv",
     "Ident": "localRecv",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 63,
       "Line": 7,
       "Column": 7
@@ -151,7 +151,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 63,
       "Line": 7,
       "Column": 7
@@ -174,7 +174,7 @@
     "Expr": "NonLocalType",
     "Ident": "NonLocalType",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 74,
       "Line": 7,
       "Column": 18
@@ -187,7 +187,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 39,
       "Line": 5,
       "Column": 6
@@ -210,7 +210,7 @@
     "Expr": "(*NonLocalType).NonLocalFunc",
     "Ident": "NonLocalFunc",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 88,
       "Line": 7,
       "Column": 32
@@ -223,7 +223,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 88,
       "Line": 7,
       "Column": 32
@@ -246,7 +246,7 @@
     "Expr": "localParam",
     "Ident": "localParam",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 101,
       "Line": 7,
       "Column": 45
@@ -259,7 +259,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 101,
       "Line": 7,
       "Column": 45
@@ -282,7 +282,7 @@
     "Expr": "int",
     "Ident": "int",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 112,
       "Line": 7,
       "Column": 56
@@ -314,7 +314,7 @@
     "Expr": "localResult",
     "Ident": "localResult",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 118,
       "Line": 7,
       "Column": 62
@@ -327,7 +327,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 118,
       "Line": 7,
       "Column": 62
@@ -350,7 +350,7 @@
     "Expr": "int",
     "Ident": "int",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 130,
       "Line": 7,
       "Column": 74
@@ -382,7 +382,7 @@
     "Expr": "localVar",
     "Ident": "localVar",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 142,
       "Line": 8,
       "Column": 6
@@ -395,7 +395,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 142,
       "Line": 8,
       "Column": 6
@@ -418,7 +418,7 @@
     "Expr": "int",
     "Ident": "int",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 151,
       "Line": 8,
       "Column": 15
@@ -450,7 +450,7 @@
     "Expr": "println",
     "Ident": "println",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 160,
       "Line": 9,
       "Column": 2
@@ -482,7 +482,7 @@
     "Expr": "NonLocalVar",
     "Ident": "NonLocalVar",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 168,
       "Line": 9,
       "Column": 10
@@ -495,7 +495,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 17,
       "Line": 3,
       "Column": 5
@@ -518,7 +518,7 @@
     "Expr": "localRecv",
     "Ident": "localRecv",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 181,
       "Line": 9,
       "Column": 23
@@ -531,7 +531,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 63,
       "Line": 7,
       "Column": 7
@@ -554,7 +554,7 @@
     "Expr": "NonLocalType",
     "Ident": "NonLocalType",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 205,
       "Line": 9,
       "Column": 47
@@ -567,7 +567,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 39,
       "Line": 5,
       "Column": 6
@@ -590,7 +590,7 @@
     "Expr": "localVar",
     "Ident": "localVar",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 222,
       "Line": 9,
       "Column": 64
@@ -603,7 +603,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 142,
       "Line": 8,
       "Column": 6
@@ -626,7 +626,7 @@
     "Expr": "localParam",
     "Ident": "localParam",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 232,
       "Line": 9,
       "Column": 74
@@ -639,7 +639,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 101,
       "Line": 7,
       "Column": 45
@@ -662,7 +662,7 @@
     "Expr": "localResult",
     "Ident": "localResult",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 244,
       "Line": 9,
       "Column": 86
@@ -675,7 +675,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 118,
       "Line": 7,
       "Column": 62
@@ -698,7 +698,7 @@
     "Expr": "localVar",
     "Ident": "localVar",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 265,
       "Line": 10,
       "Column": 9
@@ -711,7 +711,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/local.go",
+      "Filename": "testdata/src/foo/local.go",
       "Offset": 142,
       "Line": 8,
       "Column": 6

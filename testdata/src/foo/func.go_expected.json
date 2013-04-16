@@ -3,7 +3,7 @@
     "Expr": "foo",
     "Ident": "foo",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 8,
       "Line": 1,
       "Column": 9
@@ -34,7 +34,7 @@
     "Expr": "A",
     "Ident": "A",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 18,
       "Line": 3,
       "Column": 6
@@ -47,7 +47,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 18,
       "Line": 3,
       "Column": 6
@@ -70,7 +70,7 @@
     "Expr": "b",
     "Ident": "b",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 20,
       "Line": 3,
       "Column": 8
@@ -83,7 +83,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 20,
       "Line": 3,
       "Column": 8
@@ -106,7 +106,7 @@
     "Expr": "c",
     "Ident": "c",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 23,
       "Line": 3,
       "Column": 11
@@ -119,7 +119,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 23,
       "Line": 3,
       "Column": 11
@@ -142,7 +142,7 @@
     "Expr": "string",
     "Ident": "string",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 25,
       "Line": 3,
       "Column": 13
@@ -174,7 +174,7 @@
     "Expr": "d",
     "Ident": "d",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 33,
       "Line": 3,
       "Column": 21
@@ -187,7 +187,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 33,
       "Line": 3,
       "Column": 21
@@ -210,7 +210,7 @@
     "Expr": "bool",
     "Ident": "bool",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 35,
       "Line": 3,
       "Column": 23
@@ -242,7 +242,7 @@
     "Expr": "e",
     "Ident": "e",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 42,
       "Line": 3,
       "Column": 30
@@ -255,7 +255,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 42,
       "Line": 3,
       "Column": 30
@@ -278,7 +278,7 @@
     "Expr": "f",
     "Ident": "f",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 45,
       "Line": 3,
       "Column": 33
@@ -291,7 +291,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 45,
       "Line": 3,
       "Column": 33
@@ -314,7 +314,7 @@
     "Expr": "int",
     "Ident": "int",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 47,
       "Line": 3,
       "Column": 35
@@ -346,7 +346,7 @@
     "Expr": "g",
     "Ident": "g",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 52,
       "Line": 3,
       "Column": 40
@@ -359,7 +359,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 52,
       "Line": 3,
       "Column": 40
@@ -382,7 +382,7 @@
     "Expr": "uint",
     "Ident": "uint",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 54,
       "Line": 3,
       "Column": 42
@@ -414,7 +414,7 @@
     "Expr": "bb",
     "Ident": "bb",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 63,
       "Line": 4,
       "Column": 2
@@ -427,7 +427,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 63,
       "Line": 4,
       "Column": 2
@@ -450,7 +450,7 @@
     "Expr": "b",
     "Ident": "b",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 69,
       "Line": 4,
       "Column": 8
@@ -463,7 +463,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 20,
       "Line": 3,
       "Column": 8
@@ -486,7 +486,7 @@
     "Expr": "d",
     "Ident": "d",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 72,
       "Line": 5,
       "Column": 2
@@ -499,7 +499,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 33,
       "Line": 3,
       "Column": 21
@@ -522,7 +522,7 @@
     "Expr": "true",
     "Ident": "true",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 76,
       "Line": 5,
       "Column": 6
@@ -555,7 +555,7 @@
     "Expr": "e",
     "Ident": "e",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 82,
       "Line": 6,
       "Column": 2
@@ -568,7 +568,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 42,
       "Line": 3,
       "Column": 30
@@ -591,7 +591,7 @@
     "Expr": "f",
     "Ident": "f",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 89,
       "Line": 7,
       "Column": 2
@@ -604,7 +604,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 45,
       "Line": 3,
       "Column": 33
@@ -627,7 +627,7 @@
     "Expr": "len",
     "Ident": "len",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 93,
       "Line": 7,
       "Column": 6
@@ -659,7 +659,7 @@
     "Expr": "c",
     "Ident": "c",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 97,
       "Line": 7,
       "Column": 10
@@ -672,7 +672,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 23,
       "Line": 3,
       "Column": 11
@@ -695,7 +695,7 @@
     "Expr": "bb",
     "Ident": "bb",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 101,
       "Line": 7,
       "Column": 14
@@ -708,7 +708,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 63,
       "Line": 4,
       "Column": 2
@@ -731,7 +731,7 @@
     "Expr": "g",
     "Ident": "g",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 106,
       "Line": 8,
       "Column": 2
@@ -744,7 +744,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 52,
       "Line": 3,
       "Column": 40
@@ -767,7 +767,7 @@
     "Expr": "uint",
     "Ident": "uint",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 110,
       "Line": 8,
       "Column": 6
@@ -799,7 +799,7 @@
     "Expr": "e",
     "Ident": "e",
     "IdentPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 115,
       "Line": 8,
       "Column": 11
@@ -812,7 +812,7 @@
     },
     "FileName": "foo",
     "ReferPos": {
-      "Filename": "test_gopath/src/foo/func.go",
+      "Filename": "testdata/src/foo/func.go",
       "Offset": 42,
       "Line": 3,
       "Column": 30

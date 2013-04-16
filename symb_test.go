@@ -26,7 +26,7 @@ var testPkgPaths = []string{
 }
 
 func TestSymb(t *testing.T) {
-	build.Default.GOPATH, _ = filepath.Abs("test_gopath/")
+	build.Default.GOPATH, _ = filepath.Abs("testdata/")
 	for _, pkgPath := range testPkgPaths {
 		pkgs, err := parser.ParseDir(fset, filepath.Join(build.Default.GOPATH, "src", pkgPath), goFilesOnly, parser.AllErrors|parser.DeclarationErrors)
 		if err != nil {
