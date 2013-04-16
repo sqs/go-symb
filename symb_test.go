@@ -22,6 +22,7 @@ var fset = token.NewFileSet()
 
 var testPkgPaths = []string{
 	"foo",
+	"bar",
 }
 
 func TestSymb(t *testing.T) {
