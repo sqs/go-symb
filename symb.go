@@ -7,6 +7,7 @@ package symb
 
 import (
 	"bytes"
+	"code.google.com/p/go.exp/go/exact"
 	"code.google.com/p/qslack-gotypes/go/types"
 	"fmt"
 	"go/ast"
@@ -62,7 +63,7 @@ func NewContext() *Context {
 			Ident: func(id *ast.Ident, obj types.Object) {
 				ctxt.idObjs[id] = obj
 			},
-			Expr: func(e ast.Expr, typ types.Type, val interface{}) {
+			Expr: func(e ast.Expr, typ types.Type, val exact.Value) {
 				ctxt.exprTypes[astBaseType(e)] = typeBaseType(typ)
 			},
 		},
