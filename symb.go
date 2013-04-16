@@ -97,12 +97,15 @@ func sortedFiles(m map[string]*ast.File) []*ast.File {
 
 // IterateSymbs calls visitf for each symb in the given file.  If
 // visitf returns false, the iteration stops.
-func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool) {
+func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool) (err error) {
 	pkgFiles := make([]*ast.File, 0)
 	for _, f := range sortedFiles(pkg.Files) {
 		pkgFiles = append(pkgFiles, f)
 	}
-	ctxt.currentPackage, _ = ctxt.typesCtxt.Check(ctxt.FileSet, pkgFiles)
+	ctxt.currentPackage, err = ctxt.typesCtxt.Check(ctxt.FileSet, pkgFiles)
+	if err != nil {
+		return err
+	}
 
 	var visit astVisitor
 	ok := true
@@ -188,6 +191,8 @@ func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool
 	for _, file := range pkgFiles {
 		ast.Walk(visit, file)
 	}
+
+	return nil
 }
 
 func (ctxt *Context) filename(f *ast.File) string {

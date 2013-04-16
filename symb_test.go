@@ -103,10 +103,13 @@ func collectSymbs(pkg *ast.Package) (symbs []Symb) {
 	}
 
 	symbs = make([]Symb, 0)
-	c.IterateSymbs(pkg, func(symb *Symb) bool {
+	err := c.IterateSymbs(pkg, func(symb *Symb) bool {
 		symbs = append(symbs, *symb)
 		return true
 	})
+	if err != nil {
+		panic("error iterating over symbols: " + err.Error())
+	}
 	return symbs
 }
 
