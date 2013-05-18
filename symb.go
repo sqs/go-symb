@@ -7,7 +7,7 @@ package symb
 
 import (
 	"bytes"
-	"code.google.com/p/go.exp/go/exact"
+	"code.google.com/p/go.tools/go/exact"
 	"code.google.com/p/qslack-gotypes/go/types"
 	"fmt"
 	"go/ast"
