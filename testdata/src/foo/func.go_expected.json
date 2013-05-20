@@ -12,7 +12,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -24,7 +24,7 @@
     "ReferObj": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "Local": false,
     "Universe": false,
@@ -43,7 +43,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -57,7 +57,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "A",
       "Type": "func(b string, c string, d bool) (e int, f int, g uint)"
@@ -79,7 +79,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -93,7 +93,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "b",
       "Type": "string"
@@ -115,7 +115,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -129,7 +129,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "c",
       "Type": "string"
@@ -151,7 +151,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -183,7 +183,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -197,7 +197,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "d",
       "Type": "bool"
@@ -219,7 +219,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -251,7 +251,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -265,7 +265,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "e",
       "Type": "int"
@@ -287,7 +287,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -301,7 +301,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "f",
       "Type": "int"
@@ -323,7 +323,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -355,7 +355,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -369,7 +369,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "g",
       "Type": "uint"
@@ -391,7 +391,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -423,7 +423,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -437,7 +437,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "bb",
       "Type": "string"
@@ -459,7 +459,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -473,7 +473,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "b",
       "Type": "string"
@@ -495,7 +495,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -509,7 +509,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "d",
       "Type": "bool"
@@ -531,7 +531,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -564,7 +564,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -578,7 +578,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "e",
       "Type": "int"
@@ -600,7 +600,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -614,7 +614,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "f",
       "Type": "int"
@@ -636,7 +636,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -668,7 +668,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -682,7 +682,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "c",
       "Type": "string"
@@ -704,7 +704,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -718,7 +718,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "bb",
       "Type": "string"
@@ -740,7 +740,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -754,7 +754,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "g",
       "Type": "uint"
@@ -776,7 +776,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -808,7 +808,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -822,7 +822,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "e",
       "Type": "int"

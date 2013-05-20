@@ -1,7 +1,7 @@
 package symb
 
 import (
-	"code.google.com/p/qslack-gotypes/go/types"
+	"code.google.com/p/go.tools/go/types"
 	"encoding/json"
 	"fmt"
 	"go/ast"
@@ -13,6 +13,7 @@ import (
 	"os/exec"
 	"path"
 	"path/filepath"
+	"sort"
 	"testing"
 )
 
@@ -35,7 +36,7 @@ func TestSymb(t *testing.T) {
 		}
 
 		for _, pkg := range pkgs {
-			symbs := collectSymbs(pkg)
+			symbs := collectSymbs(pkgPath, pkg)
 			symbsByFilename := make(map[string][]Symb, 0)
 			for _, x := range symbs {
 				filename := fset.Position(x.Ident.Pos()).Filename
@@ -93,7 +94,7 @@ func writeJson(filename string, v interface{}) {
 	f.Write([]byte{'\n'})
 }
 
-func collectSymbs(pkg *ast.Package) (symbs []Symb) {
+func collectSymbs(importPath string, pkg *ast.Package) (symbs []Symb) {
 	c := NewContext()
 	c.FileSet = fset
 	c.Logf = func(pos token.Pos, f string, a ...interface{}) {
@@ -104,7 +105,7 @@ func collectSymbs(pkg *ast.Package) (symbs []Symb) {
 	}
 
 	symbs = make([]Symb, 0)
-	err := c.IterateSymbs(pkg, func(symb *Symb) bool {
+	err := c.IterateSymbs(importPath, sortedFiles(pkg.Files), func(symb *Symb) bool {
 		symbs = append(symbs, *symb)
 		return true
 	})
@@ -179,7 +180,7 @@ func typePackageToJson(p *types.Package) interface{} {
 		return struct {
 			Isa, Name, ImportPath string
 		}{
-			"Package", p.Name, p.Path,
+			"Package", p.Name(), p.Path(),
 		}
 	}
 }
@@ -204,7 +205,7 @@ func typeObjectToJson(o *types.Object) interface{} {
 			Type interface{}
 			Val  interface{}
 		}{
-			"Const", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type), o.Val,
+			"Const", typePackageToJson(o.Pkg()), o.Name(), typeTypeToJson(o.Type()), o.Val(),
 		}
 	case *types.TypeName:
 		return struct {
@@ -213,7 +214,7 @@ func typeObjectToJson(o *types.Object) interface{} {
 			Name string
 			Type interface{}
 		}{
-			"TypeName", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type),
+			"TypeName", typePackageToJson(o.Pkg()), o.Name(), typeTypeToJson(o.Type()),
 		}
 	case *types.Var:
 		return struct {
@@ -222,7 +223,7 @@ func typeObjectToJson(o *types.Object) interface{} {
 			Name string
 			Type interface{}
 		}{
-			"Var", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type),
+			"Var", typePackageToJson(o.Pkg()), o.Name(), typeTypeToJson(o.Type()),
 		}
 	case *types.Func:
 		return struct {
@@ -231,7 +232,7 @@ func typeObjectToJson(o *types.Object) interface{} {
 			Name string
 			Type interface{}
 		}{
-			"Func", typePackageToJson(o.Pkg), o.Name, typeTypeToJson(o.Type),
+			"Func", typePackageToJson(o.Pkg()), o.Name(), typeTypeToJson(o.Type()),
 		}
 	default:
 		if o != nil {
@@ -252,4 +253,20 @@ func prettys(symbs []Symb) string {
 		s += pretty(x.Expr)
 	}
 	return s + "]"
+}
+
+func sortedFiles(m map[string]*ast.File) []*ast.File {
+	keylist := make([]string, len(m))
+	i := 0
+	for filename, _ := range m {
+		keylist[i] = filename
+		i++
+	}
+	sort.Strings(keylist)
+
+	vallist := make([]*ast.File, len(m))
+	for i, filename := range keylist {
+		vallist[i] = m[filename]
+	}
+	return vallist
 }

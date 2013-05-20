@@ -12,7 +12,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -24,7 +24,7 @@
     "ReferObj": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "Local": false,
     "Universe": false,
@@ -43,7 +43,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -57,7 +57,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "NonLocalVar",
       "Type": "int"
@@ -75,11 +75,11 @@
       "Line": 5,
       "Column": 6
     },
-    "ExprType": "NonLocalType",
+    "ExprType": "foo.NonLocalType",
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -93,10 +93,10 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "NonLocalType",
-      "Type": "NonLocalType"
+      "Type": "foo.NonLocalType"
     },
     "Local": false,
     "Universe": false,
@@ -115,7 +115,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -143,11 +143,11 @@
       "Line": 7,
       "Column": 7
     },
-    "ExprType": "*NonLocalType",
+    "ExprType": "*foo.NonLocalType",
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -161,10 +161,10 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localRecv",
-      "Type": "*NonLocalType"
+      "Type": "*foo.NonLocalType"
     },
     "Local": true,
     "Universe": false,
@@ -179,11 +179,11 @@
       "Line": 7,
       "Column": 18
     },
-    "ExprType": "NonLocalType",
+    "ExprType": "foo.NonLocalType",
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -197,10 +197,10 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "NonLocalType",
-      "Type": "NonLocalType"
+      "Type": "foo.NonLocalType"
     },
     "Local": false,
     "Universe": false,
@@ -219,7 +219,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -233,7 +233,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "NonLocalFunc",
       "Type": "func(localParam int) (localResult int)"
@@ -255,7 +255,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -269,7 +269,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localParam",
       "Type": "int"
@@ -291,7 +291,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -323,7 +323,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -337,7 +337,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localResult",
       "Type": "int"
@@ -359,7 +359,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -391,7 +391,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -405,7 +405,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localVar",
       "Type": "int"
@@ -427,7 +427,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -459,7 +459,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -491,7 +491,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -505,7 +505,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "NonLocalVar",
       "Type": "int"
@@ -523,11 +523,11 @@
       "Line": 9,
       "Column": 23
     },
-    "ExprType": "NonLocalType",
+    "ExprType": "foo.NonLocalType",
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -541,10 +541,10 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localRecv",
-      "Type": "*NonLocalType"
+      "Type": "*foo.NonLocalType"
     },
     "Local": true,
     "Universe": false,
@@ -559,11 +559,11 @@
       "Line": 9,
       "Column": 47
     },
-    "ExprType": "NonLocalType",
+    "ExprType": "foo.NonLocalType",
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -577,10 +577,10 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "NonLocalType",
-      "Type": "NonLocalType"
+      "Type": "foo.NonLocalType"
     },
     "Local": false,
     "Universe": false,
@@ -599,7 +599,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -613,7 +613,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localVar",
       "Type": "int"
@@ -635,7 +635,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -649,7 +649,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localParam",
       "Type": "int"
@@ -671,7 +671,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -685,7 +685,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localResult",
       "Type": "int"
@@ -707,7 +707,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -721,7 +721,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "localVar",
       "Type": "int"

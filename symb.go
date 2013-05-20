@@ -8,12 +8,11 @@ package symb
 import (
 	"bytes"
 	"code.google.com/p/go.tools/go/exact"
-	"code.google.com/p/qslack-gotypes/go/types"
+	"code.google.com/p/go.tools/go/types"
 	"fmt"
 	"go/ast"
 	"go/printer"
 	"go/token"
-	"sort"
 )
 
 // Symb holds information about a symbol.
@@ -79,30 +78,10 @@ func (ctxt *Context) logf(pos token.Pos, f string, a ...interface{}) {
 	ctxt.Logf(pos, f, a...)
 }
 
-func sortedFiles(m map[string]*ast.File) []*ast.File {
-	keylist := make([]string, len(m))
-	i := 0
-	for filename, _ := range m {
-		keylist[i] = filename
-		i++
-	}
-	sort.Strings(keylist)
-
-	vallist := make([]*ast.File, len(m))
-	for i, filename := range keylist {
-		vallist[i] = m[filename]
-	}
-	return vallist
-}
-
 // IterateSymbs calls visitf for each symb in the given file.  If
 // visitf returns false, the iteration stops.
-func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool) (err error) {
-	pkgFiles := make([]*ast.File, 0)
-	for _, f := range sortedFiles(pkg.Files) {
-		pkgFiles = append(pkgFiles, f)
-	}
-	ctxt.currentPackage, err = ctxt.typesCtxt.Check(ctxt.FileSet, pkgFiles)
+func (ctxt *Context) IterateSymbs(importPath string, files []*ast.File, visitf func(symb *Symb) bool) (err error) {
+	ctxt.currentPackage, err = ctxt.typesCtxt.Check(importPath, ctxt.FileSet, files...)
 
 	var visit astVisitor
 	ok := true
@@ -145,7 +124,7 @@ func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool
 					Sel: n.Name,
 				}
 			}
-			ok = ctxt.visitExpr(pkg, e, false, visitf)
+			ok = ctxt.visitExpr(e, false, visitf)
 			ast.Walk(visit, n.Type)
 			if n.Body != nil {
 				ast.Walk(visit, n.Body)
@@ -154,7 +133,7 @@ func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool
 			return false
 
 		case *ast.Ident:
-			ok = ctxt.visitExpr(pkg, n, local, visitf)
+			ok = ctxt.visitExpr(n, local, visitf)
 			return false
 
 		case *ast.KeyValueExpr:
@@ -167,12 +146,12 @@ func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool
 
 		case *ast.SelectorExpr:
 			ast.Walk(visit, n.X)
-			ok = ctxt.visitExpr(pkg, n, local, visitf)
+			ok = ctxt.visitExpr(n, local, visitf)
 			return false
 
 		case *ast.File:
 			ctxt.currentFile = n
-			ok = ctxt.visitExpr(pkg, n.Name, false, visitf)
+			ok = ctxt.visitExpr(n.Name, false, visitf)
 			for _, d := range n.Decls {
 				ast.Walk(visit, d)
 			}
@@ -185,7 +164,7 @@ func (ctxt *Context) IterateSymbs(pkg *ast.Package, visitf func(symb *Symb) bool
 
 	// We sorted pkg.Files by name into pkgFiles above. It needs to be
 	// sorted, or else our walk order is nondeterministic.
-	for _, file := range pkgFiles {
+	for _, file := range files {
 		ast.Walk(visit, file)
 	}
 
@@ -201,13 +180,13 @@ func (ctxt *Context) exprInfo(e ast.Expr) (obj types.Object, typ types.Type) {
 		obj = ctxt.idObjs[id]
 	}
 	typ = ctxt.exprTypes[e]
-	if typ == nil && obj != nil && obj.GetType() != types.Typ[types.Invalid] {
-		typ = obj.GetType()
+	if typ == nil && obj != nil && obj.Type() != types.Typ[types.Invalid] {
+		typ = obj.Type()
 	}
 	return
 }
 
-func (ctxt *Context) visitExpr(pkg *ast.Package, e ast.Expr, local bool, visitf func(*Symb) bool) bool {
+func (ctxt *Context) visitExpr(e ast.Expr, local bool, visitf func(*Symb) bool) bool {
 	var symb Symb
 	symb.Expr = e
 	symb.Pkg = ctxt.currentPackage
@@ -228,13 +207,13 @@ func (ctxt *Context) visitExpr(pkg *ast.Package, e ast.Expr, local bool, visitf 
 	}
 	symb.ExprType = t
 	symb.ReferObj = obj
-	if types.Universe.Lookup(obj.GetName()) != obj {
+	if types.Universe.Lookup(obj.Name()) != obj {
 		if _, isConst := obj.(*types.Const); isConst {
 			// workaround for http://code.google.com/p/go/issues/detail?id=5143
 			// TODO(sqs): remove this when the issue is fixed
 			return true
 		}
-		symb.ReferPos = obj.GetPos()
+		symb.ReferPos = obj.Pos()
 	} else {
 		symb.Universe = true
 	}
@@ -284,13 +263,13 @@ func astBaseType(e ast.Expr) ast.Expr {
 func typeBaseType(t types.Type) types.Type {
 	switch t := t.(type) {
 	case *types.Array:
-		return typeBaseType(t.Elt)
+		return typeBaseType(t.Elem())
 	case *types.Pointer:
-		return typeBaseType(t.Base)
+		return typeBaseType(t.Deref())
 	case *types.Map:
-		return typeBaseType(t.Elt) // TODO(sqs): also return Key type; typeBaseType needs to return multiple results?
+		return typeBaseType(t.Elem()) // TODO(sqs): also return Key type; typeBaseType needs to return multiple results?
 	case *types.Slice:
-		return typeBaseType(t.Elt)
+		return typeBaseType(t.Elem())
 	}
 	return t
 }

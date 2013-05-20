@@ -12,7 +12,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -24,7 +24,7 @@
     "ReferObj": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "Local": false,
     "Universe": false,
@@ -43,7 +43,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -57,7 +57,7 @@
       "Pkg": {
         "Isa": "Package",
         "Name": "foo",
-        "ImportPath": ""
+        "ImportPath": "foo"
       },
       "Name": "main",
       "Type": "func()"
@@ -79,7 +79,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -110,7 +110,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -146,7 +146,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -177,7 +177,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -213,7 +213,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
@@ -244,7 +244,7 @@
     "Pkg": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "FileName": "foo",
     "ReferPos": {
