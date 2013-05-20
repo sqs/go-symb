@@ -1,0 +1,317 @@
+[
+  {
+    "Expr": "foo",
+    "Ident": "foo",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 8,
+      "Line": 1,
+      "Column": 9
+    },
+    "ExprType": "",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "R",
+    "Ident": "R",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
+    "ExprType": "foo.R",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "TypeName",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": "foo"
+      },
+      "Name": "R",
+      "Type": "foo.R"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "int",
+    "Ident": "int",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 20,
+      "Line": 3,
+      "Column": 8
+    },
+    "ExprType": "int",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "",
+      "Offset": 0,
+      "Line": 0,
+      "Column": 0
+    },
+    "ReferObj": {
+      "Isa": "TypeName",
+      "Pkg": null,
+      "Name": "int",
+      "Type": "int"
+    },
+    "Local": false,
+    "Universe": true,
+    "IsDecl": false
+  },
+  {
+    "Expr": "r",
+    "Ident": "r",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 31,
+      "Line": 5,
+      "Column": 7
+    },
+    "ExprType": "foo.R",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 31,
+      "Line": 5,
+      "Column": 7
+    },
+    "ReferObj": {
+      "Isa": "Var",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": "foo"
+      },
+      "Name": "r",
+      "Type": "foo.R"
+    },
+    "Local": true,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "R",
+    "Ident": "R",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 33,
+      "Line": 5,
+      "Column": 9
+    },
+    "ExprType": "foo.R",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "TypeName",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": "foo"
+      },
+      "Name": "R",
+      "Type": "foo.R"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "R.M",
+    "Ident": "M",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 36,
+      "Line": 5,
+      "Column": 12
+    },
+    "ExprType": "func()",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 36,
+      "Line": 5,
+      "Column": 12
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": "foo"
+      },
+      "Name": "M",
+      "Type": "func()"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "init",
+    "Ident": "init",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 49,
+      "Line": 7,
+      "Column": 6
+    },
+    "ExprType": "func()",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 49,
+      "Line": 7,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": "foo"
+      },
+      "Name": "init",
+      "Type": "func()"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": true
+  },
+  {
+    "Expr": "R",
+    "Ident": "R",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 59,
+      "Line": 8,
+      "Column": 2
+    },
+    "ExprType": "foo.R",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 18,
+      "Line": 3,
+      "Column": 6
+    },
+    "ReferObj": {
+      "Isa": "TypeName",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": "foo"
+      },
+      "Name": "R",
+      "Type": "foo.R"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  },
+  {
+    "Expr": "R.M",
+    "Ident": "M",
+    "IdentPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 63,
+      "Line": 8,
+      "Column": 6
+    },
+    "ExprType": "func()",
+    "Pkg": {
+      "Isa": "Package",
+      "Name": "foo",
+      "ImportPath": "foo"
+    },
+    "FileName": "foo",
+    "ReferPos": {
+      "Filename": "testdata/src/foo/method.go",
+      "Offset": 18,
+      "Line": 5,
+      "Column": 12
+    },
+    "ReferObj": {
+      "Isa": "Func",
+      "Pkg": {
+        "Isa": "Package",
+        "Name": "foo",
+        "ImportPath": "foo"
+      },
+      "Name": "R.M",
+      "Type": "func()"
+    },
+    "Local": false,
+    "Universe": false,
+    "IsDecl": false
+  }
+]
