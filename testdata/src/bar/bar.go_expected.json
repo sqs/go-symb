@@ -91,7 +91,7 @@
     "ReferObj": {
       "Isa": "Package",
       "Name": "foo",
-      "ImportPath": ""
+      "ImportPath": "foo"
     },
     "Local": false,
     "Universe": false,

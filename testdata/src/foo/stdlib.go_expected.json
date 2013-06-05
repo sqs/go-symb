@@ -91,7 +91,7 @@
     "ReferObj": {
       "Isa": "Package",
       "Name": "flag",
-      "ImportPath": ""
+      "ImportPath": "flag"
     },
     "Local": false,
     "Universe": false,
@@ -158,7 +158,7 @@
     "ReferObj": {
       "Isa": "Package",
       "Name": "flag",
-      "ImportPath": ""
+      "ImportPath": "flag"
     },
     "Local": false,
     "Universe": false,
@@ -225,7 +225,7 @@
     "ReferObj": {
       "Isa": "Package",
       "Name": "fmt",
-      "ImportPath": ""
+      "ImportPath": "fmt"
     },
     "Local": false,
     "Universe": false,

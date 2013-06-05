@@ -207,7 +207,7 @@ func (ctxt *Context) visitExpr(e ast.Expr, local bool, visitf func(*Symb) bool) 
 	}
 	symb.ExprType = t
 	symb.ReferObj = obj
-	if types.Universe.Lookup(obj.Name()) != obj {
+	if types.Universe.Lookup(obj.Pkg(), obj.Name()) != obj {
 		if _, isConst := obj.(*types.Const); isConst {
 			// workaround for http://code.google.com/p/go/issues/detail?id=5143
 			// TODO(sqs): remove this when the issue is fixed
